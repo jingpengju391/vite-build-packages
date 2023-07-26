@@ -1,0 +1,18 @@
+{
+  "include": ["env.d.ts", "examples/**/*", "examples/**/*.vue", "packages/**/*", "packages/**/*.vue", "packages/*"],
+  "exclude": ["examples/**/__tests__/*", "@packages.d.ts"],
+  "compilerOptions": {
+    "module": "esnext",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "strict": true,
+    "composite": true,
+    "baseUrl": ".",
+    "target": "esnext",
+    "downlevelIteration": true,
+    "paths": {
+      "@/*": ["packages/*"],
+      "@packages/*": ["packages/index.ts"]
+    }
+  }
+}

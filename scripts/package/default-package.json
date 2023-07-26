@@ -1,0 +1,32 @@
+{
+  "private": false,
+  "bugs": {
+    "url": ""
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "",
+    "url": ""
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "lib/packages/index.js",
+  "module": "es/packages/index.mjs",
+  "types": "types/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./lib/packages/index.js",
+      "import": "./es/packages/index.mjs"
+    },
+    "./es": "./es/packages/index.mjs",
+    "./lib": "./lib/packages/index.js",
+    "./es/*.mjs": "./es/packages/*.mjs",
+    "./es/*": "./es/packages/*.mjs",
+    "./lib/*.js": "./lib/packages/*.js",
+    "./lib/*": "./lib/packages/*.js",
+    "./*": "./*"
+  },
+  "style": "es/style.css"
+}
+  
