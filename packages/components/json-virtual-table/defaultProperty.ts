@@ -2,7 +2,14 @@ import Sortable from 'sortablejs'
 import { v4 as uuid } from 'uuid'
 import { JsonVirtualProps } from './type'
 
-export const omitProperty = ['className', 'backgroundConfig', 'hideWrapBorder', 'currentRow', 'currentColumn', 'sortable']
+export const omitProperty = [
+  'className',
+  'backgroundConfig',
+  'hideWrapBorder',
+  'currentRow',
+  'currentColumn',
+  'sortable'
+]
 
 export const defaultHeaderHeight = {
   unit: 'px',
@@ -58,13 +65,13 @@ export const defaultProperty: Partial<JsonVirtualProps> = {
 export const dragRowOption: Sortable.SortableOptions = {
   animation: 180,
   direction: 'horizontal',
-  onEnd: (/** Event */evt: Sortable.SortableEvent) => {
+  onEnd: (/** Event */ evt: Sortable.SortableEvent) => {
     console.warn(evt, 'please replace the current method')
   }
 }
 
 export const dragColOption: Sortable.SortableOptions = {
-  onEnd: async(/** Event */evt: Sortable.SortableEvent) => {
+  onEnd: async (/** Event */ evt: Sortable.SortableEvent) => {
     console.warn(evt, 'please replace the current method')
   }
 }

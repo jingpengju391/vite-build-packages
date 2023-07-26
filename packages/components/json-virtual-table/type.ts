@@ -3,7 +3,7 @@ import type { VxeGridProps, VxeGridInstance } from 'vxe-table'
 
 type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never }
 
-type R<T, U> = (T | U) extends object ? (Without<T, U> & U) | (Without<U, T> & T) : T | U
+type R<T, U> = T | U extends object ? (Without<T, U> & U) | (Without<U, T> & T) : T | U
 
 type BackgroundConfig = R<{ transparent: boolean }, { backgroundColor: string }>
 
@@ -24,7 +24,7 @@ export interface JsonVirtualProps extends VxeGridProps {
   currentColumn?: {
     key: string | number
     isCurrent: boolean
-  },
+  }
   sortable?: {
     enabled: boolean
     disabledRow: boolean
@@ -45,7 +45,7 @@ export type SortableOptionKey = keyof Sortable.SortableOptions
 export const NaviNodeIdDelimiter = '-'
 
 export enum JsonVirtualContainer {
-  HTMLTag = 'div',
+  HTMLTag = 'div'
 }
 
 export enum ClassNameDelimiter {

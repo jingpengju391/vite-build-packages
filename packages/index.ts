@@ -1,6 +1,3 @@
-
-
-
 import type { App } from 'vue'
 import { CodeEditor, JsonVirtualTable } from './components'
 
@@ -14,8 +11,8 @@ const install = (app: App): void => {
 
 export default {
   install,
-  CodeEditor, JsonVirtualTable
+  CodeEditor,
+  JsonVirtualTable
 }
 
 export { CodeEditor, JsonVirtualTable }
-

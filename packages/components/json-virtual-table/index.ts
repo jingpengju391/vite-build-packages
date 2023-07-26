@@ -1,14 +1,38 @@
-import { h, defineComponent, PropType, watch, getCurrentInstance, nextTick, computed, onBeforeMount, ComponentInternalInstance } from 'vue'
+import {
+  h,
+  defineComponent,
+  PropType,
+  watch,
+  getCurrentInstance,
+  nextTick,
+  computed,
+  onBeforeMount,
+  ComponentInternalInstance
+} from 'vue'
 import { VxeGridListeners, VxeGridInstance, Grid, VxeTableDefines } from 'vxe-table'
 import Sortable from 'sortablejs'
 
 import { evalRight, omit } from '../../utils'
-import { omitProperty, defaultProperty, defaultHeaderHeight, elSortableClass, dragRowOption, dragColOption } from './defaultProperty'
+import {
+  omitProperty,
+  defaultProperty,
+  defaultHeaderHeight,
+  elSortableClass,
+  dragRowOption,
+  dragColOption
+} from './defaultProperty'
 import { omitEvent, defaultEvent } from './defaultEvent'
 
 import {
-  JsonVirtualContainer, JsonVirtualProps, ClassNameDelimiter,
-  StyleType, ClassNameType, PositionKey, PropertyOrderKeyType, FunFix, ClassNameVarType
+  JsonVirtualContainer,
+  JsonVirtualProps,
+  ClassNameDelimiter,
+  StyleType,
+  ClassNameType,
+  PositionKey,
+  PropertyOrderKeyType,
+  FunFix,
+  ClassNameVarType
 } from './type'
 
 import './defaultStyle.scss'
@@ -52,7 +76,11 @@ export default defineComponent({
      * watch options
      * go to configure initialization information
      */
-    watch(() => props.options, async() => _initTotalFunction(), { immediate: true })
+    watch(
+      () => props.options,
+      async() => _initTotalFunction(),
+      { immediate: true }
+    )
 
     onBeforeMount(() => {
       // romove drop sort
@@ -102,9 +130,9 @@ export default defineComponent({
       if (!props.options || !props.options.sortable) return
       const _el = table.value.$el.querySelector(elSortableClass.row)
       const { rowOption } = props.options.sortable
-      const option = (rowOption
-        ? Object.assign({}, dragRowOption, rowOption)
-        : dragRowOption) as Sortable.SortableOptions
+      const option = (
+        rowOption ? Object.assign({}, dragRowOption, rowOption) : dragRowOption
+      ) as Sortable.SortableOptions
       _rowDropSort = Sortable.create(_el, option)
     }
 
@@ -115,9 +143,9 @@ export default defineComponent({
       if (!props.options || !props.options.sortable) return
       const _el = table.value.$el.querySelector(elSortableClass.col)
       const { colOption } = props.options.sortable
-      const option = (colOption
-        ? Object.assign({}, dragColOption, colOption)
-        : dragRowOption) as Sortable.SortableOptions
+      const option = (
+        colOption ? Object.assign({}, dragColOption, colOption) : dragRowOption
+      ) as Sortable.SortableOptions
       _columnDropSort = Sortable.create(_el, option)
     }
 
@@ -136,27 +164,46 @@ export default defineComponent({
 
     // calc classname is for more
     // it's maybe replaced by calc classname function in the future
-    className.push(...(<PositionKey[]>Object.keys(properties.hideWrapBorder!))
-      .filter(key => properties.hideWrapBorder![key]).map(key => `${ClassNameType.hideWrapBorder}${ClassNameDelimiter.rod}${key}`))
+    className.push(
+      ...(<PositionKey[]>Object.keys(properties.hideWrapBorder!))
+        .filter((key) => properties.hideWrapBorder![key])
+        .map((key) => `${ClassNameType.hideWrapBorder}${ClassNameDelimiter.rod}${key}`)
+    )
 
-    const findIndexForm = Object.keys(properties).findIndex(key => key === PropertyOrderKeyType.formConfig)
+    const findIndexForm = Object.keys(properties).findIndex(
+      (key) => key === PropertyOrderKeyType.formConfig
+    )
 
-    const findIndexTool = Object.keys(properties).findIndex(key => key === PropertyOrderKeyType.toolbarConfig)
+    const findIndexTool = Object.keys(properties).findIndex(
+      (key) => key === PropertyOrderKeyType.toolbarConfig
+    )
 
     findIndexForm - findIndexTool > 0 && className.push(ClassNameType.shiftOrderFormTool)
 
-    return h(JsonVirtualContainer.HTMLTag,
+    return h(
+      JsonVirtualContainer.HTMLTag,
       {
         class: className.join(ClassNameDelimiter.space),
         style: {
-          [ClassNameVarType.BGC]: properties.backgroundConfig!.backgroundColor || (properties.backgroundConfig!.transparent ? StyleType.transparent : StyleType.white),
-          [ClassNameVarType.HH]: `${properties.headerHeight || defaultHeaderHeight.value}${defaultHeaderHeight.unit}`
+          [ClassNameVarType.BGC]:
+            properties.backgroundConfig!.backgroundColor ||
+            (properties.backgroundConfig!.transparent ? StyleType.transparent : StyleType.white),
+          [ClassNameVarType.HH]: `${properties.headerHeight || defaultHeaderHeight.value}${
+            defaultHeaderHeight.unit
+          }`
         }
-      }, h(Grid,
-        { ...omit(omitProperty, properties), ...omit(omitEvent, __overWents(__assignDefaultEvent(defaultEvent, this.events))) }, {
+      },
+      h(
+        Grid,
+        {
+          ...omit(omitProperty, properties),
+          ...omit(omitEvent, __overWents(__assignDefaultEvent(defaultEvent, this.events)))
+        },
+        {
           ...this.$slots
         }
-      ))
+      )
+    )
   }
 })
 
@@ -171,8 +218,8 @@ function __assignDefaultEvent<T, U>(defaultEvent: T, events: U): T & U {
     const reg = `/^${FunFix.prefix}/`
     const newKey = !evalRight(reg).test(key)
       ? `${FunFix.prefix}${key.charAt(0).toUpperCase()}${key.slice(1)}`
-      : key;
-    (<any>newObj)[newKey] = tempEvents[key as keyof typeof tempEvents]
+      : key
+    ;(<any>newObj)[newKey] = tempEvents[key as keyof typeof tempEvents]
     return newObj
   }, <T & U>{})
 }
@@ -181,17 +228,32 @@ function __assignDefaultEvent<T, U>(defaultEvent: T, events: U): T & U {
  * merge default option & transmit params option
  * if you try Object.assign is nothing or deep merge property
  */
-function __assignDefaultProperty<T extends object, U extends object>(defaultOptions: T, options: U): T & U {
-  const __assign = Object.assign || function() {
-    return [...new Set([...Object.keys(defaultOptions), ...Object.keys(options)])].reduce((newObj, k) => {
-      if (__isObject(options[k as keyof typeof options]) && __isObject(defaultOptions[k as keyof typeof defaultOptions])) {
-        (<any>newObj)[k as keyof typeof newObj] = __assignDefaultProperty(defaultOptions[k as keyof typeof defaultOptions] as T, options[k as keyof typeof options] as U)
-        return newObj
-      }
-      (<any>newObj)[k] = options[k as keyof typeof options] || defaultOptions[k as keyof typeof defaultOptions]
-      return newObj
-    }, <T & U>{})
-  }
+function __assignDefaultProperty<T extends object, U extends object>(
+  defaultOptions: T,
+  options: U
+): T & U {
+  const __assign =
+    Object.assign ||
+    function() {
+      return [...new Set([...Object.keys(defaultOptions), ...Object.keys(options)])].reduce(
+        (newObj, k) => {
+          if (
+            __isObject(options[k as keyof typeof options]) &&
+            __isObject(defaultOptions[k as keyof typeof defaultOptions])
+          ) {
+            ;(<any>newObj)[k as keyof typeof newObj] = __assignDefaultProperty(
+              defaultOptions[k as keyof typeof defaultOptions] as T,
+              options[k as keyof typeof options] as U
+            )
+            return newObj
+          }
+          ;(<any>newObj)[k] =
+            options[k as keyof typeof options] || defaultOptions[k as keyof typeof defaultOptions]
+          return newObj
+        },
+        <T & U>{}
+      )
+    }
   return __assign({}, defaultOptions, options)
 }
 

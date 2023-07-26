@@ -1,5 +1,3 @@
-
-
 import { _arity, _curry1, _curry2, _clone, _isNumber, _equals } from './internals'
 
 const once = _curry1(function once<T, F extends(...args: any[]) => T>(fn: F): F {
@@ -15,7 +13,9 @@ const once = _curry1(function once<T, F extends(...args: any[]) => T>(fn: F): F 
 })
 
 const clone = _curry1(function clone<T extends { clone?: Function }>(value: T): T {
-  return value != null && typeof value.clone === 'function' ? value.clone() : _clone(value, [], [], true)
+  return value != null && typeof value.clone === 'function'
+    ? value.clone()
+    : _clone(value, [], [], true)
 })
 
 const range = _curry2(function range(from: any, to: any): number[] {
@@ -70,7 +70,6 @@ const equals = _curry2(function equals(a: any, b: any) {
   return _equals(a, b, [], [])
 })
 export { once, clone, range, omit, pick, equals }
-
 
 export function evalRight(fn: string) {
   const Fun = Function

@@ -1,29 +1,24 @@
-Table 重封装组件说明
-====
+# Table 重封装组件说明
 
+## 封装说明
 
-封装说明
-----
-
->  基础的使用方式与 API 与 [官方版(Table)](https://vxetable.cn/#/table/start/install) 本一致，在其基础上，默认样式、默认属性、
-默认方法, table拖拽排序，动态当前行，工具栏于form顺序等。
+> 基础的使用方式与 API 与 [官方版(Table)](https://vxetable.cn/#/table/start/install) 本一致，在其基础上，默认样式、默认属性、
+> 默认方法, table 拖拽排序，动态当前行，工具栏于 form 顺序等。
 >
 > 你无需在你是用表格的页面进行分页逻辑处理，仅需向 Table 组件传递绑定 `:options="options" :events="events"` 对象即可
 
 该 `table` 由 [@Thales](https://github.com/jingpengju391) 完成封装
 
+## 例子 1
 
-例子1
-----
 （基础使用）
 
 ```vue
-
 <template>
   <json-virtual-table :options="options" :events="events"></json-virtual-table>
 </template>
 
-<script setup lang=ts name="compoentName">
+<script setup lang="ts" name="compoentName">
 import JsonVirtualTable from '@/views/components/JsonVirtualTable'
 
 const options = {
@@ -32,18 +27,14 @@ const options = {
 }
 
 const events = {
-  onScroll ({ scrollTop, scrollLeft }) {
+  onScroll({ scrollTop, scrollLeft }) {
     console.log(`滚动事件scrollTop=${scrollTop} scrollLeft=${scrollLeft}`)
   }
 }
 </script>
-
 ```
 
-
-
-例子2
-----
+## 例子 2
 
 （简单的表格，最后一列是各种操作）
 
@@ -59,7 +50,7 @@ const events = {
   </json-virtual-table>
 </template>
 
-<script setup lang=ts name="compoentName">
+<script setup lang="ts" name="compoentName">
 import JsonVirtualTable from '@/views/components/JsonVirtualTable'
 
 const options = {
@@ -103,55 +94,48 @@ const options = {
 }
 // 选择性添加前缀'on'
 const events = {
-  headerCellClick ({ column }) {  
+  headerCellClick({ column }) {
     console.log(`表头单元格点击${column.title}`)
   },
-  headerCellDblclick ({ column }) {
+  headerCellDblclick({ column }) {
     console.log(`表头单元格双击${column.title}`)
   },
-  onHeaderCellMenu ({ column }) {
+  onHeaderCellMenu({ column }) {
     console.log(`表头右键单元格 ${column.title}`)
   },
-  onCellClick ({ column }) {
+  onCellClick({ column }) {
     console.log(`单元格点击${column.title}`)
   }
 }
 </script>
 ```
 
-
-
-内置方法
-----
+## 内置方法
 
 通过 `this.$refs[refName]/ [refName].value` 调用 JsonVirtualTable vm
 
 `this.$refs[refName].table / [refName].value.table` 调用 table vm
-
 
 > 注意：
 > `refresh` 评估阶段 暂不能用
 > 要调用 `refresh(bool)` 需要给表格组件设定 `ref` 值
 > `refresh()` 方法可以传一个 `bool` 值，当有传值 或值为 `true` 时，则刷新时会强制刷新到第一页（常用户页面 搜索 按钮进行搜索时，结果从第一页开始分页）
 
+## 内置属性
 
-内置属性
-----
-> 除去 `vxe-table` 自带属性外，还而外提供了一些额外属性属性  
+> 除去 `vxe-table` 自带属性外，还而外提供了一些额外属性属性
 
-
-| property       | explain                                                  | type              | default |
-| -------------- | -------------------------------------------------------- | ----------------- | ------  |
-| tool&form      | show component order according to form and tool order    | object            | null    |
-| transparent    | table background color is  transparent                   | boolean           | true    |
-| backgroundColor| table background color is  backgroundColor               | string            | null    |
-| hideWrapBorder | table broder display( top,right,bottom,left )            | boolean           | false   |
-| headerHeight   | table header height                                      | number            | 48      |
-| ref            | table ref                                                | string            | tableRef|
-| currentColumn  | scroll to current column  by current key (fileId)        | string | number   | null    |
-| currentRow     | scroll to current Row  by current key (id)               | string | number   | null    |
-| drag           | drag row/col sort(http://www.sortablejs.com/options.html)|  SortableOptions  | null    |
-
+| property        | explain                                                   | type            | default  |
+| --------------- | --------------------------------------------------------- | --------------- | -------- | ---- |
+| tool&form       | show component order according to form and tool order     | object          | null     |
+| transparent     | table background color is transparent                     | boolean         | true     |
+| backgroundColor | table background color is backgroundColor                 | string          | null     |
+| hideWrapBorder  | table broder display( top,right,bottom,left )             | boolean         | false    |
+| headerHeight    | table header height                                       | number          | 48       |
+| ref             | table ref                                                 | string          | tableRef |
+| currentColumn   | scroll to current column by current key (fileId)          | string          | number   | null |
+| currentRow      | scroll to current Row by current key (id)                 | string          | number   | null |
+| drag            | drag row/col sort(http://www.sortablejs.com/options.html) | SortableOptions | null     |
 
 `tool&form` 属性对象：
 
@@ -168,24 +152,24 @@ options: {
 }
 ```
 
-注意事项
-----
-> 你可能需要通过ref 调用JsonVirtualTable vm，通过 ref.table 调用 table vm
+## 注意事项
+
+> 你可能需要通过 ref 调用 JsonVirtualTable vm，通过 ref.table 调用 table vm
 > 绑定事件函数需采用驼峰方式在前面加上'on'(最新版本可选择添加)
 > 你可能需要为了与后端提供的接口返回结果一致而去修改以下代码：
 > (需要注意的是，这里的修改是全局性的，意味着整个项目所有使用该 table 组件都需要遵守这个返回结果定义的字段。)
 >
 > 文档中的结构有可能由于组件 bug 进行修正而改动。实际修改请以当时最新版本为准
 
-修改 默认属性 `@/views/components/JsonVirtualTable/defaultProperty`  第 10 行起
-修改 默认事件 `@/views/components/JsonVirtualTable/defaultEvent`  第 1 行起
-修改 默认样式 `@/views/components/JsonVirtualTable/defaultStyle`  第 0 行起
+修改 默认属性 `@/views/components/JsonVirtualTable/defaultProperty` 第 10 行起
+修改 默认事件 `@/views/components/JsonVirtualTable/defaultEvent` 第 1 行起
+修改 默认样式 `@/views/components/JsonVirtualTable/defaultStyle` 第 0 行起
 
 > 文档中的结构有拖拽功能开发中
-开发：拖拽 `@/views/components/JsonVirtualTable/index`  第 41 行起
-
+> 开发：拖拽 `@/views/components/JsonVirtualTable/index` 第 41 行起
 
 传入 JSON 例子（ 具体参考 type :
+
 ```javascript
   options: {
     column:{
@@ -353,13 +337,10 @@ options: {
     * 表单参数
     */
     formConfig?: VxeGridPropTypes.FormConfig
-    ...    
+    ...
   }
 ```
 
-
-
-更新时间
-----
+## 更新时间
 
 该文档最后更新于： 2023-02-09 PM 15:00
