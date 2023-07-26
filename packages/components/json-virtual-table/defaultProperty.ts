@@ -71,7 +71,7 @@ export const dragRowOption: Sortable.SortableOptions = {
 }
 
 export const dragColOption: Sortable.SortableOptions = {
-  onEnd: async (/** Event */ evt: Sortable.SortableEvent) => {
+  onEnd: async(/** Event */ evt: Sortable.SortableEvent) => {
     console.warn(evt, 'please replace the current method')
   }
 }

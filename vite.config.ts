@@ -7,6 +7,9 @@ import DefineOptions from "unplugin-vue-define-options/vite"
 import eslint from "vite-eslint-plugin"
 import sass from 'sass'
 import path from 'path'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 // import postcssMixins from "postcss-mixins"
 // import  { libInjectCss } from 'vite-plugin-lib-inject-css'
 // import libCss from 'vite-plugin-libcss'
@@ -53,6 +56,12 @@ export default defineConfig({
       }
     },
     compression({ algorithm: 'brotliCompress', exclude: [/\.(br)$/, /\.(gz)$/] }),
+    AutoImport({
+      resolvers: [ElementPlusResolver()],
+    }),
+    Components({
+      resolvers: [ElementPlusResolver()],
+    })
   ],
   css: {
     postcss: {
