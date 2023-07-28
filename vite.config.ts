@@ -28,6 +28,9 @@ import buildPackages from './scripts/build-packages'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+    port: 10000
+  },
   plugins: [
     eslint(),
     vue(),
