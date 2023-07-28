@@ -1,18 +1,21 @@
-import type { App } from 'vue'
-import { CodeEditor, JsonVirtualTable } from './components'
+import type { App, DefineComponent } from 'vue'
+import { CodeXpert, JsonVirtualTable } from './components'
 
-const components = [CodeEditor, JsonVirtualTable]
+interface Components {
+  [key: string]: DefineComponent<{}, {}, any>;
+}
+
+const components: Components = { CodeXpert, JsonVirtualTable }
 
 const install = (app: App): void => {
-  components.forEach((component) => {
-    app.component(component.name, component)
-  })
+  for (const component in components) {
+    app.component(components[component].name, components[component])
+  }
 }
 
 export default {
   install,
-  CodeEditor,
-  JsonVirtualTable
+  ...components,
 }
 
-export { CodeEditor, JsonVirtualTable }
+export * from './components'

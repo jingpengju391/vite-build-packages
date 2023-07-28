@@ -2,17 +2,22 @@
   "include": ["env.d.ts", "examples/**/*", "examples/**/*.vue", "packages/**/*", "packages/**/*.vue", "packages/*", "examples"],
   "exclude": ["examples/**/__tests__/*", "@packages.d.ts"],
   "compilerOptions": {
+    "target": "esnext",
     "module": "esnext",
+    "lib": ["ESNext"],
     "esModuleInterop": true,
     "moduleResolution": "node",
     "strict": true,
     "composite": true,
     "baseUrl": ".",
-    "target": "esnext",
     "downlevelIteration": true,
+    "resolveJsonModule": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
     "paths": {
       "@/*": ["packages/*"],
-      "@packages/*": ["packages/index.ts"]
+      "@packages/*": ["packages/index.ts"],
+      "@examples/*": ["examples/*"]
     }
   }
 }

@@ -18,5 +18,6 @@ module.exports = {
     '@typescript-eslint/semi': ['error', 'never'],
     '@typescript-eslint/no-var-requires': 0,
     'prefer-rest-params': 0,
+    'vue/multi-word-component-names': 'off',
   }
 }

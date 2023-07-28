@@ -7,7 +7,8 @@
     "types": ["node"],
     "paths": {
       "@/*": ["packages/*"],
-      "@packages/*": ["packages/index.ts"]
+      "@packages/*": ["packages/index.ts"],
+      "@examples/*": ["examples/*"]
     }
   }
 }

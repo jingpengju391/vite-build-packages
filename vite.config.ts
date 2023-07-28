@@ -76,7 +76,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'packages'),
-      '@packages': path.resolve(__dirname, 'packages/index.ts')
+      '@packages': path.resolve(__dirname, 'packages/index.ts'),
+      '@examples': path.resolve(__dirname, 'examples')
     }
   },
   build: buildPackages,

@@ -2,7 +2,7 @@
   <el-container class="layout-container-demo" style="height: 100vh"  v-model="isCollapse" :background-color="'#ff000000'">
     <el-aside width="200px">
       <el-scrollbar>
-        <el-menu :default-openeds="['1']">
+        <el-menu :default-openeds="['1']" :default-active="latestComponentName">
           <el-sub-menu index="1">
             <template #title>
               <el-icon><icon-menu /></el-icon>Nova Plus
@@ -48,10 +48,14 @@ import { registerComponents } from './hook'
 
 const isCollapse = ref(true)
 
-const componentName = ref(registerComponents[0].name)
+const latestComponent = computed(() => registerComponents.at(-1))
+
+const latestComponentName = computed(() => latestComponent.value?.name || '' )
+
+const componentName = ref(latestComponentName.value)
 
 const component = computed(() => 
-registerComponents.find(component => component.name === componentName.value)?.component || registerComponents[0].component)
+registerComponents.find(component => component.name === componentName.value)?.component || latestComponent.value!.component)
 
 const selectComponent = (env: any) => {
   componentName.value = env.index

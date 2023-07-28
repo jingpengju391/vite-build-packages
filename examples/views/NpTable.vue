@@ -3,9 +3,10 @@
 </template>
 
 <script lang="ts" setup>
+import { JsonVirtualProps } from '@/components/json-virtual-table/type'
 import { JsonVirtualTable } from '@packages'
 
-const options = {
+const options: JsonVirtualProps = {
   columns: [
     { type: 'seq', width: 50 },
     { field: 'name', title: 'name' },
