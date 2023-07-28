@@ -1,4 +1,4 @@
-import { h, defineComponent, ref, HTMLAttributes, onMounted, onUnmounted } from 'vue'
+import { h, defineComponent, ref, HTMLAttributes, onMounted } from 'vue'
 import * as monaco from 'monaco-editor'
 import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
 import './style/editor-style.scss'
