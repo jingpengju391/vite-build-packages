@@ -9,7 +9,7 @@ export function setHighlight(properties: IStandaloneEditorConstructionOptions, c
         ignoreCase: true,
         tokenizer: {
             root: [
-                [/\b(if|else|for|while|do|break|continue|switch|case|default|try|catch|finally|throw|return)\b/, "keyword"],
+                [/\b(if|else|for|while|do|break|continue|switch|case|default|try|catch|finally|throw|return|function)\b/, "keyword"],
                 ...monarchTokens
             ]
         }
@@ -22,7 +22,9 @@ export function setTheme(properties: IStandaloneEditorConstructionOptions, compl
     monacos.editor.defineTheme(`${properties.language!}Theme`, {
         base: 'vs',
         inherit: true,
-        rules: themeTokens,
+        rules: [
+            ...themeTokens,
+        ],
         colors: {
             'editor.background': '#ffffff'
         }

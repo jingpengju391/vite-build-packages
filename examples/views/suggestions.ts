@@ -182,7 +182,7 @@ export const suggestions: Partial<CompletionItem>[] = [
         kind :monaco.languages.CompletionItemKind.Color, 
         detail : "My custom color",
         documentation : "This is my custom color",
-        insertText : "#000000",
+        insertText : "ssssss",
         insertTextRules :monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, 
         
      },
@@ -257,6 +257,14 @@ export const suggestions: Partial<CompletionItem>[] = [
        insertText : "snippet",
        insertTextRules :monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, 
        
+     },
+     {
+       label:'if', 
+       kind :monaco.languages.CompletionItemKind.Snippet, 
+       detail : "My custom snippet",
+       documentation : "This is my custom snippet",
+       insertText : "if() {\n\t\n}",
+       insertTextRules :monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, 
      }
 ]
   
@@ -272,5 +280,24 @@ export const highlightItem = [
   {
     label: 'cc',
     color: '04e38d'
+  }
+]
+
+
+export const hoverProvider = [
+  {
+    label: 'abc',
+    detail: 'this is abc',
+    documentation: 'hello, this is abc hhhhhh'
+  },
+  {
+    label: 'thales',
+    detail: 'this is thales',
+    documentation: 'hello, this is abc thales',
+    contents: [
+      { value: `<h1>Word:</h1><div>thales</div>`, isTrusted: true, supportHtml: true },
+      { value: `<div>Word:</div><div>thales</div>`, isTrusted: true, supportHtml: true },
+      { value: `<div>Word:</div><div>thales</div>`, isTrusted: true, supportHtml: true }
+    ]
   }
 ]

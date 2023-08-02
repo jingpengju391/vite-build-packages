@@ -13,6 +13,13 @@ export interface HighlightItem {
     color: string
 }
 
+export interface HoverProvider {
+    label: string
+    detail?: string
+    documentation?: string
+    contents?: monaco.IMarkdownString[]
+}
+
 export enum CodeContainer {
     HTMLTAG = 'div',
     CLASSNAME = 'np-editor',

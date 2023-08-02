@@ -91,6 +91,21 @@ monaco.languages.registerCompletionItemProvider('javascript', {
 #### color: 补全项的颜色标签
 
 
+### HoverProvider 对象
+
+
+#### label: 字符串内容
+#### detail: hover 详情
+#### documentation: hover 描述
+#### contents: 自定义hover描述
+
+- ##### value: 表示 Markdown 格式化的字符串内容。
+- ##### isTrusted: 可选属性，用于指示该字符串是否可以信任。如果设置为 true，则表示该字符串来自可信源，可以在编辑器中显示。如果设置为 false 或未定义，则表示该字符串不可信，编辑器将不会显示它。
+- ##### supportThemeIcons: 可选属性，用于指示该字符串是否支持主题图标。如果设置为 true，则表示该字符串中的图标将根据当前主题进行渲染。如果设置为 false 或未定义，则表示该字符串中的图标将始终使用默认样式。
+- ##### supportHtml: 可选属性，用于指示该字符串是否支持 HTML 标记。如果设置为 true，则表示该字符串中可以包含 HTML 标记。如果设置为 false 或未定义，则表示该字符串中不允许包含 HTML 标记。
+- ##### baseUri: 可选属性，用于指定该字符串中相对链接的基本 URI。如果未指定，则默认为当前页面的 URI。
+- ##### uris: 可选属性，用于指定该字符串中所有链接的 URI。这是一个对象，其中键是链接的 href 属性，值是 URI 组件对象。
+- ##### 注：contents 如果设置supportHtml 仅支持标签，不支持属性
 
 ## Table 重封装组件说明
 

@@ -10,7 +10,7 @@
         <ul>
         </ul>
       </el-card>
-      <code-xpert ref="gggg" :suggestions="suggestions" :triggerCharacters="['->','&&','@@','::']" :highlightItem="highlightItem"></code-xpert>
+      <code-xpert ref="gggg" :suggestions="suggestions" :triggerCharacters="['->','&&','@@','::']" :highlightItem="highlightItem" :hoverProvider="hoverProvider"></code-xpert>
     </div>
 </template>
   
@@ -18,7 +18,7 @@
 import {ref, onMounted} from 'vue'
 import { CodeXpert } from '@packages'
 
-import { suggestions, highlightItem } from './suggestions'
+import { suggestions, highlightItem, hoverProvider } from './suggestions'
 
 const gggg = ref<any>()
 
