@@ -1,5 +1,5 @@
 {
-  "include": ["env.d.ts", "examples/**/*", "examples/**/*.vue", "packages/**/*", "packages/**/*.vue", "packages/*", "examples"],
+  "include": ["env.d.ts", "examples/**/*", "examples/**/*.vue", "packages/**/*", "packages/**/*.vue", "packages/*", "examples", "packages"],
   "exclude": ["examples/**/__tests__/*", "@packages.d.ts"],
   "compilerOptions": {
     "target": "esnext",

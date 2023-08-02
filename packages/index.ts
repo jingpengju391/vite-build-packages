@@ -19,3 +19,5 @@ export default {
 }
 
 export * from './components'
+
+export * from './utils'

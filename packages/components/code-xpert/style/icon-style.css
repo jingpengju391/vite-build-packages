@@ -1,0 +1,182 @@
+/* This's CompletionItemKind value
+    Method = 0,
+    Function = 1,
+    Constructor = 2,
+    Field = 3,
+    Variable = 4,
+    Class = 5,
+    Struct = 6,
+    Interface = 7,
+    Module = 8,
+    Property = 9,
+    Event = 10,
+    Operator = 11,
+    Unit = 12,
+    Value = 13,
+    Constant = 14,
+    Enum = 15,
+    EnumMember = 16,
+    Keyword = 17,
+    Text = 18,
+    Color = 19,
+    File = 20,
+    Reference = 21,
+    Customcolor = 22,
+    Folder = 23,
+    TypeParameter = 24,
+    User = 25,
+    Issue = 26,
+    Snippet = 27
+   CSS multi-line comment */
+
+.codicon-symbol-method:before,
+/* .codicon-symbol-function:before, */
+/* .codicon-symbol-constructor:before, */
+/* .codicon-symbol-field:before, */
+/* .codicon-symbol-snippet:before, */
+/* .codicon-symbol-class:before, */
+/* .codicon-symbol-struct:before, */
+/* .codicon-symbol-interface:before, */
+/* .codicon-symbol-module:before, */
+/* .codicon-symbol-property:before, */
+/* .codicon-symbol-event:before, */
+/* .codicon-symbol-operator:before, */
+/* .codicon-symbol-unit:before, */
+/* .codicon-symbol-value:before, */
+/* .codicon-symbol-constant:before, */
+.codicon-symbol-enum:before,
+/* .codicon-symbol-enum-member:before, */
+/* .codicon-symbol-keyword:before, */
+/* .codicon-symbol-text:before, */
+/* .codicon-symbol-color:before, */
+/* .codicon-symbol-file:before, */
+.codicon-symbol-reference:before,
+/* .codicon-symbol-customcolor:before, */
+/* .codicon-symbol-folder:before, */
+/* .codicon-symbol-type-parameter:before, */
+.codicon-account:before,  /* link */
+.codicon-issues:before,  /* .codicon-symbol-type-parameter:before, */
+.codicon-symbol-variable::before {
+  display: block;
+  width: 16px;
+  height: 16px;
+  background-size: cover;
+  
+/* 
+  content:"\e8b2" !important;
+  font-family:"element-icons" !important;
+  margin-right: 5px; */
+}
+
+/* element-plus icons update link https://github.com/element-plus/element-plus-icons/tree/main */
+.codicon-symbol-method:before {
+  content: url(../../../assets/icons/svg/menu.svg) !important;
+}
+
+/* .codicon-symbol-function:before {
+  content: url(../../../assets/icons/svg/ticket.svg) !important;
+} */
+
+/* .codicon-symbol-constructor:before {
+  content: url(../../../assets/icons/svg/ticket.svg) !important;
+} */
+
+/* .codicon-symbol-field:before {
+  content: url(../../../assets/icons/svg/ticket.svg) !important;
+} */
+
+.codicon-symbol-variable:before {
+  content: url(../../../assets/icons/svg/ticket.svg) !important;
+}
+
+/* .codicon-symbol-class:before {
+  content: url(../../../assets/icons/svg/ticket.svg) !important;
+} */
+
+/* .codicon-symbol-struct:before {
+  content: url(../../../assets/icons/svg/ticket.svg) !important;
+} */
+/* 
+.codicon-symbol-interface:before {
+  content: url(../../../assets/icons/svg/ticket.svg) !important;
+} */
+
+/* .codicon-symbol-module:before {
+  content: url(../../../assets/icons/svg/ticket.svg) !important;
+} */
+
+/* .codicon-symbol-property:before {
+  content: url(../../../assets/icons/svg/ticket.svg) !important;
+} */
+
+/* .codicon-symbol-event:before {
+  content: url(../../../assets/icons/svg/ticket.svg) !important;
+} */
+
+/* .codicon-symbol-operator:before {
+  content: url(../../../assets/icons/svg/ticket.svg) !important;
+} */
+
+/* .codicon-symbol-unit:before {
+  content: url(../../../assets/icons/svg/ticket.svg) !important;
+} */
+
+/* .codicon-symbol-value:before {
+  content: url(../../../assets/icons/svg/ticket.svg) !important;
+} */
+
+/* .codicon-symbol-constant:before {
+  content: url(../../../assets/icons/svg/ticket.svg) !important;
+} */
+
+.codicon-symbol-enum:before {
+  content: url(../../../assets/icons/svg/aim.svg) !important;
+}
+
+/* .codicon-symbol-enum-member:before {
+  content: url(../../../assets/icons/svg/ticket.svg) !important;
+} */
+
+/* .codicon-symbol-keyword:before {
+  content: url(../../../assets/icons/svg/ticket.svg) !important;
+} */
+
+/* .codicon-symbol-text:before {
+  content: url(../../../assets/icons/svg/ticket.svg) !important;
+} */
+
+/* .codicon-symbol-color:before {
+  content: url(../../../assets/icons/svg/ticket.svg) !important;
+} */
+
+/* .codicon-symbol-file:before {
+  content: url(../../../assets/icons/svg/ticket.svg) !important;
+} */
+
+.codicon-symbol-reference:before {
+  content: url(../../../assets/icons/svg/paperclip.svg) !important;
+}
+
+/* .codicon-symbol-custom-color:before {
+  content: url(../../../assets/icons/svg/ticket.svg) !important;
+} */
+
+/* .codicon-symbol-folder:before {
+  content: url(../../../assets/icons/svg/ticket.svg) !important;
+} */
+
+/* .codicon-symbol-type-parameter:before {
+  content: url(../../../assets/icons/svg/ticket.svg) !important;
+} */
+
+.codicon-account:before {
+  content: url(../../../assets/icons/svg/share.svg) !important;
+}
+
+.codicon-issues:before {
+  content: url(../../../assets/icons/svg/comment.svg) !important;
+}
+
+/* .codicon-symbol-snippet::before {
+  content: url(../../../assets/icons/svg/ticket.svg) !important;
+} */
