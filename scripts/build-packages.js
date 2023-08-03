@@ -1,3 +1,9 @@
+/* eslint-disable no-undef */
+
+const external = Object.keys(require('../package.json').dependencies)
+
+const globals = toCamelCaseObject(external)
+
 export default 
 {
   cssTarget: "chrome80",
@@ -12,7 +18,7 @@ export default
   brotliSize: true,
   chunkSizeWarningLimit: 2000,
   rollupOptions: {
-    external: ["vue"],
+    external,
     input: ["packages/index.ts"],
     output: [
       {
@@ -21,9 +27,7 @@ export default
         preserveModules: true,
         exports: "named",
         dir: "dist/es",
-        globals: {
-          vue: "Vue"
-        }
+        globals
       },
       {
         format: "cjs",
@@ -31,9 +35,7 @@ export default
         preserveModules: true,
         exports: "named",
         dir: "dist/lib",
-        globals: {
-          vue: "Vue"
-        }
+        globals
       }
     ]
   },
@@ -41,3 +43,25 @@ export default
     entry: "./packages/index.ts"
   }
 }
+
+function hyphenToCamelCase(str) {
+  return str.replace(/-([a-z])/g, function(match, letter) {
+    return letter.toUpperCase()
+  })
+}
+
+function capitalizeFirstLetter(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}
+
+function toCamelCaseObject(arr) {
+  let result = {}
+  for (let i = 0; i < arr.length; i++) {
+    let key = arr[i]
+    let camelCaseKey = hyphenToCamelCase(key)
+    let pascalCaseKey = capitalizeFirstLetter(camelCaseKey)
+    result[key] = pascalCaseKey
+  }
+  return result
+}
+
