@@ -11,20 +11,20 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "lib/packages/index.js",
-  "module": "es/packages/index.mjs",
+  "main": "lib/index.js",
+  "module": "es/index.mjs",
   "types": "types/index.d.ts",
   "exports": {
     ".": {
-      "require": "./lib/packages/index.js",
-      "import": "./es/packages/index.mjs"
+      "require": "./lib/index.js",
+      "import": "./es/index.mjs"
     },
-    "./es": "./es/packages/index.mjs",
-    "./lib": "./lib/packages/index.js",
-    "./es/*.mjs": "./es/packages/*.mjs",
-    "./es/*": "./es/packages/*.mjs",
-    "./lib/*.js": "./lib/packages/*.js",
-    "./lib/*": "./lib/packages/*.js",
+    "./es": "./es/index.mjs",
+    "./lib": "./lib/index.js",
+    "./es/*.mjs": "./es/*.mjs",
+    "./es/*": "./es/*.mjs",
+    "./lib/*.js": "./lib/*.js",
+    "./lib/*": "./lib/*.js",
     "./*": "./*"
   },
   "style": "es/style.css"

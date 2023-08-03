@@ -27,7 +27,8 @@ export default
         preserveModules: true,
         exports: "named",
         dir: "dist/es",
-        globals
+        globals,
+        assetFileNames: 'assets/[name].[ext]',
       },
       {
         format: "cjs",
@@ -35,7 +36,8 @@ export default
         preserveModules: true,
         exports: "named",
         dir: "dist/lib",
-        globals
+        globals,
+        assetFileNames: 'assets/[name].[ext]',
       }
     ]
   },

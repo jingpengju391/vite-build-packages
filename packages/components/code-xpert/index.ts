@@ -1,6 +1,5 @@
 import { h, defineComponent, ref, HTMLAttributes, onMounted, PropType, onUnmounted } from 'vue'
 import * as monaco from 'monaco-editor'
-import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
 import './style/editor-style.scss'
 import './style/icon-style.css'
 import { __assignDefaultProperty } from '@/utils'
@@ -9,13 +8,6 @@ import { registerCompletion } from './registerCompletion'
 import { IStandaloneEditorConstructionOptions, CompletionItem, CodeContainer, HighlightItem, HoverProvider } from './type'
 import { setTheme, setHighlight } from './codeHighlight'
 import { handleHoverProvider } from './hoverProvider'
-declare let self: any
-self.MonacoEnvironment = {
-  getWorker() {
-    return new editorWorker()
-  }
-}
-
 
 export default defineComponent({
   name: CodeContainer.NAMA,

@@ -107,6 +107,20 @@ monaco.languages.registerCompletionItemProvider('javascript', {
 - ##### uris: 可选属性，用于指定该字符串中所有链接的 URI。这是一个对象，其中键是链接的 href 属性，值是 URI 组件对象。
 - ##### 注：contents 如果设置supportHtml 仅支持标签，不支持属性
 
+
+#### 注：由于是二次封装 monaco editor 你在使用的时候需要将 work导入进来，具体参看下面这段代码，以保证 editor 可以正常的运行
+
+```
+import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
+
+declare let self: any
+self.MonacoEnvironment = {
+  getWorker() {
+    return new editorWorker()
+  }
+}
+```
+
 ## Table 重封装组件说明
 
 ### 封装说明

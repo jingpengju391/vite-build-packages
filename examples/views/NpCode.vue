@@ -17,8 +17,16 @@
 <script lang="ts" setup>
 import {ref, onMounted} from 'vue'
 import { CodeXpert } from '@packages'
-
+import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
 import { suggestions, highlightItem, hoverProvider } from './suggestions'
+
+
+declare let self: any
+self.MonacoEnvironment = {
+  getWorker() {
+    return new editorWorker()
+  }
+}
 
 const gggg = ref<any>()
 
