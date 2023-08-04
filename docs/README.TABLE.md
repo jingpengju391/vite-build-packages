@@ -7,7 +7,7 @@
 >
 > 你无需在你是用表格的页面进行分页逻辑处理，仅需向 Table 组件传递绑定 `:options="options" :events="events"` 对象即可
 
-该 `table` 由 [@Thales](https://github.com/jingpengju391) 完成封装
+>  该 `table` 由 [@Thales](https://github.com/jingpengju391) 完成封装
 
 ## 例子 1
 
@@ -112,9 +112,9 @@ const events = {
 
 ## 内置方法
 
-通过 `this.$refs[refName]/ [refName].value` 调用 JsonVirtualTable vm
+>  通过 `this.$refs[refName] / [refName].value` 调用 JsonVirtualTable vm
 
-`this.$refs[refName].table / [refName].value.table` 调用 table vm
+> this.$refs[refName].table / [refName].value.table  调用 table vm
 
 > 注意：
 > `refresh` 评估阶段 暂不能用
@@ -125,19 +125,19 @@ const events = {
 
 > 除去 `vxe-table` 自带属性外，还而外提供了一些额外属性属性
 
-| property        | explain                                                   | type            | default  |
-| --------------- | --------------------------------------------------------- | --------------- | -------- | ---- |
-| tool&form       | show component order according to form and tool order     | object          | null     |
-| transparent     | table background color is transparent                     | boolean         | true     |
-| backgroundColor | table background color is backgroundColor                 | string          | null     |
-| hideWrapBorder  | table broder display( top,right,bottom,left )             | boolean         | false    |
-| headerHeight    | table header height                                       | number          | 48       |
-| ref             | table ref                                                 | string          | tableRef |
-| currentColumn   | scroll to current column by current key (fileId)          | string          | number   | null |
-| currentRow      | scroll to current Row by current key (id)                 | string          | number   | null |
-| drag            | drag row/col sort(http://www.sortablejs.com/options.html) | SortableOptions | null     |
+| property | explain | type | defau |
+| -------- | ------- | ---- | ------- |
+| tool&form | show component order according to form and tool order | object | null |
+| transparent | table background color is transparent | boolean | true |
+| backgroundColor | table background color is backgroundColor | string | null |
+| hideWrapBorder | table broder display( top,right,bottom,left ) | boolean | false |
+| headerHeight | table header height | number | 48   |
+| ref  | table ref | string | tableRef |
+| currentColumn | scroll to current column by current key (fileId) | string | number |
+| currentRow | scroll to current Row by current key (id) | string | number |
+| drag | drag row/col sort[( more )](http://www.sortablejs.com/options.html) | SortableOptions | null |
 
-`tool&form` 属性对象：
+## `tool&form` 属性对象：
 
 ```javascript
 toolbarConfig on top
@@ -161,14 +161,14 @@ options: {
 >
 > 文档中的结构有可能由于组件 bug 进行修正而改动。实际修改请以当时最新版本为准
 
-修改 默认属性 `@/views/components/JsonVirtualTable/defaultProperty` 第 10 行起
-修改 默认事件 `@/views/components/JsonVirtualTable/defaultEvent` 第 1 行起
-修改 默认样式 `@/views/components/JsonVirtualTable/defaultStyle` 第 0 行起
+> 修改 默认属性 `@/views/components/JsonVirtualTable/defaultProperty` 第 10 行起
+> 修改 默认事件 `@/views/components/JsonVirtualTable/defaultEvent` 第 1 行起
+> 修改 默认样式 `@/views/components/JsonVirtualTable/defaultStyle` 第 0 行起
 
 > 文档中的结构有拖拽功能开发中
 > 开发：拖拽 `@/views/components/JsonVirtualTable/index` 第 41 行起
 
-传入 JSON 例子（ 具体参考 type :
+### 传入 JSON 例子具体参考 type :
 
 ```javascript
   options: {
@@ -341,6 +341,6 @@ options: {
   }
 ```
 
-## 更新时间
+##### 更新时间
 
-该文档最后更新于： 2023-02-09 PM 15:00
+> 该文档最后更新于： 2023-08-04 PM 15:00
