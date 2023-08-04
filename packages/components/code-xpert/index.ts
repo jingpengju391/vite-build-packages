@@ -1,4 +1,4 @@
-import { h, defineComponent, ref, HTMLAttributes, onMounted, PropType, onUnmounted } from 'vue'
+import { h, defineComponent, ref, onMounted, PropType, onUnmounted } from 'vue'
 import * as monaco from 'monaco-editor'
 import './style/editor-style.scss'
 import './style/icon-style.css'
@@ -20,7 +20,7 @@ export default defineComponent({
   },
   setup(props) {
    
-    const refEditor = ref<HTMLAttributes|null>(null)
+    const refEditor = ref<HTMLDivElement| null>(null)
     const editor = ref<monaco.editor.IStandaloneCodeEditor|null>(null)
     
     const initEditor = () => {
@@ -29,7 +29,7 @@ export default defineComponent({
       setTheme(properties, props.suggestions, props.highlightItem)
       setHighlight(properties, props.suggestions, props.highlightItem)
       handleHoverProvider(properties, props.suggestions, props.hoverProvider)
-      editor.value = monaco.editor.create(refEditor.value, properties)
+      editor.value = monaco.editor.create(refEditor.value!, properties)
       editor.value.onDidChangeModelContent(() => registerCompletion(props.suggestions || [], properties, triggerCharacters))
     }
 
