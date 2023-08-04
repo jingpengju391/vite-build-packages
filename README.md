@@ -53,11 +53,11 @@ const options: JsonVirtualProps = {
 
 #### JsonVirtualTable
 
-- a component ablout virtual table, it's nased on Vxe Table secondary development[ ( more ) ](https://github.com/jingpengju391/vite-build-packages).
+- a component ablout virtual table, it's nased on Vxe Table secondary development[ ( more ) ](https://github.com/jingpengju391/vite-build-packages/blob/master/docs/README.TABLE.md).
 
 #### CodeXpert
 
-- a component ablout code editor, it's nased on Monaco Editor secondary development [ ( more )](https://github.com/jingpengju391/vite-build-packages).
+- a component ablout code editor, it's nased on Monaco Editor secondary development [ ( more )](https://github.com/jingpengju391/vite-build-packages/blob/master/docs/README.CODEXPERT.md).
 
 ## Browser Support
 
