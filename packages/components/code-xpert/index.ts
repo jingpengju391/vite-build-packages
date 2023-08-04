@@ -1,5 +1,4 @@
 import { h, defineComponent, ref, onMounted, PropType } from 'vue'
-import ElementResizeDetectorMaker from 'element-resize-detector'
 import * as monaco from 'monaco-editor'
 import './style/editor-style.scss'
 import './style/icon-style.css'
@@ -33,14 +32,6 @@ export default defineComponent({
       handleHoverProvider(properties, props.suggestions, props.hoverProvider)
       editor.value = monaco.editor.create(refEditor.value!, properties)
       editor.value.onDidChangeModelContent(() => registerCompletion(props.suggestions || [], properties, triggerCharacters))
-
-      const Erd = ElementResizeDetectorMaker()
-
-      Erd.listenTo(refEditor.value as HTMLElement, () => {
-        editor.value!.layout() // adaptive parent width and height, with issues
-      })
-
-     
     }
 
     const disposeEditor = () => {

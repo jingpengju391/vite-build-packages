@@ -30,7 +30,6 @@
     "unpub": "npm unpublish deep-light --force"
   },
   "dependencies": {
-    "element-resize-detector": "^1.2.4",
     "monaco-editor": "^0.40.0",
     "sortablejs": "^1.15.0",
     "uuid": "^9.0.0",
@@ -41,7 +40,6 @@
     "@iconify-json/ep": "^1.1.11",
     "@rushstack/eslint-patch": "^1.2.0",
     "@tsconfig/node18": "^2.0.1",
-    "@types/element-resize-detector": "^1.1.3",
     "@types/sortablejs": "^1.15.1",
     "@types/uuid": "^9.0.2",
     "@vitejs/plugin-vue": "^4.2.3",
