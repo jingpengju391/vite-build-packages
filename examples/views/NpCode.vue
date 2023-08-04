@@ -10,7 +10,7 @@
         <ul>
         </ul>
       </el-card>
-      <code-xpert ref="gggg" :suggestions="suggestions" :triggerCharacters="['->','&&','@@','::']" :highlightItem="highlightItem" :hoverProvider="hoverProvider"></code-xpert>
+      <code-xpert ref="codeXpertRef" :suggestions="suggestions" :triggerCharacters="['->','&&','@@','::']" :highlightItem="highlightItem" :hoverProvider="hoverProvider"></code-xpert>
     </div>
 </template>
   
@@ -18,6 +18,7 @@
 import {ref, onMounted} from 'vue'
 import { CodeXpert } from '@packages'
 import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
+import * as monaco from 'monaco-editor'
 import { suggestions, highlightItem, hoverProvider } from './suggestions'
 
 
@@ -28,11 +29,19 @@ self.MonacoEnvironment = {
   }
 }
 
-const gggg = ref<any>()
+const codeXpertRef = ref<any>()
 
 onMounted(() => {
-  gggg.value.editor.onDidChangeModelContent(() => {
-    // console.log(333333)
+
+  codeXpertRef.value.editor.addAction({
+    id: 'save-shortcut',
+    label: 'Save',
+    keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS],
+    run: () => {
+      console.log('save')
+    }
+  })
+  codeXpertRef.value.editor.onDidChangeModelContent(() => {
   })
 })
 </script>

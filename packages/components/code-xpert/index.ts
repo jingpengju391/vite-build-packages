@@ -1,4 +1,5 @@
-import { h, defineComponent, ref, onMounted, PropType, onUnmounted } from 'vue'
+import { h, defineComponent, ref, onMounted, PropType } from 'vue'
+import ElementResizeDetectorMaker from 'element-resize-detector'
 import * as monaco from 'monaco-editor'
 import './style/editor-style.scss'
 import './style/icon-style.css'
@@ -8,7 +9,7 @@ import { registerCompletion } from './registerCompletion'
 import { IStandaloneEditorConstructionOptions, CompletionItem, CodeContainer, HighlightItem, HoverProvider } from './type'
 import { setTheme, setHighlight } from './codeHighlight'
 import { handleHoverProvider } from './hoverProvider'
-
+import { preventEventBubbling } from './defaultEvent'
 export default defineComponent({
   name: CodeContainer.NAMA,
   props: {
@@ -26,19 +27,28 @@ export default defineComponent({
     const initEditor = () => {
       const properties =  __assignDefaultProperty(defaultProperty, props.options || {})
       const triggerCharacters =  [...new Set([...defaultTriggerCharacters, ...(props.triggerCharacters || [])])]
+      properties.preventDefault &&  preventEventBubbling()
       setTheme(properties, props.suggestions, props.highlightItem)
       setHighlight(properties, props.suggestions, props.highlightItem)
       handleHoverProvider(properties, props.suggestions, props.hoverProvider)
       editor.value = monaco.editor.create(refEditor.value!, properties)
       editor.value.onDidChangeModelContent(() => registerCompletion(props.suggestions || [], properties, triggerCharacters))
+
+      const Erd = ElementResizeDetectorMaker()
+
+      Erd.listenTo(refEditor.value as HTMLElement, () => {
+        editor.value!.layout() // adaptive parent width and height, with issues
+      })
+
+     
     }
 
     const disposeEditor = () => {
-      editor.value && editor.value.dispose()
+      // editor.value && editor.value.dispose()
     }
 
     onMounted(() => initEditor())
-    onUnmounted(() => disposeEditor())
+    // onUnmounted(() => disposeEditor())
     return {
       refEditor,
       editor,
@@ -47,7 +57,7 @@ export default defineComponent({
     }
   },
   render() {
-    return h(CodeContainer.HTMLTAG, { class: CodeContainer.CLASSNAME, ref: CodeContainer.REF }, CodeContainer.EMPTYSTRING)
+    return h(CodeContainer.HTMLTAG, { class: CodeContainer.CLASSNAME, ref: CodeContainer.REF, id: CodeContainer.ID }, CodeContainer.EMPTYSTRING)
   }
 })
 

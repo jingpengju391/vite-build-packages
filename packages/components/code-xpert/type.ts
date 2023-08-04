@@ -1,7 +1,7 @@
 import * as monaco from 'monaco-editor'
 
 export interface IStandaloneEditorConstructionOptions extends monaco.editor.IStandaloneEditorConstructionOptions {
-  
+    preventDefault?: boolean
 }
 
 export interface CompletionItem extends monaco.languages.CompletionItem {
@@ -25,5 +25,6 @@ export enum CodeContainer {
     CLASSNAME = 'np-editor',
     REF = 'refEditor',
     NAMA = 'CodeXpert',
-    EMPTYSTRING = ''
+    EMPTYSTRING = '',
+    ID = "code-xpert"
 }
