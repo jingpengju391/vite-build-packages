@@ -1,12 +1,12 @@
 {
   "private": false,
   "bugs": {
-    "url": ""
+    "url": "https://github.com/jingpengju391/vite-build-packages/issues"
   },
   "license": "MIT",
   "repository": {
-    "type": "",
-    "url": ""
+    "type": "git",
+    "url": "git@github.com:jingpengju391/vite-build-packages.git"
   },
   "publishConfig": {
     "access": "public"
@@ -30,4 +30,3 @@
   },
   "style": "es/style.css"
 }
-  
