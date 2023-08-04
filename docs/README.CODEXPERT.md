@@ -3,7 +3,7 @@
 ## 封装说明
 
 > 基础的使用方式与 API 与 [官方版(Monaco Editor)](https://microsoft.github.io/monaco-editor/) 本一致，新增自定义联想提示、自定义语法高亮、自定义详情展示等
->  该 `table` 由 [@Thales](https://github.com/jingpengju391) 完成封装
+>  该 `editor` 由 [@Thales](https://github.com/jingpengju391) 完成封装
 
 ## Props
 
