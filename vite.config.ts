@@ -13,6 +13,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import Inspect from 'vite-plugin-inspect'
+import { visualizer } from 'rollup-plugin-visualizer'
 // import postcssMixins from "postcss-mixins"
 // import  { libInjectCss } from 'vite-plugin-lib-inject-css'
 // import libCss from 'vite-plugin-libcss'
@@ -94,7 +95,10 @@ export default defineConfig({
     Icons({
       autoInstall: true,
     }),
-    Inspect()
+    Inspect(),
+    visualizer({
+      filename: 'examples/assets/visualizer.html'
+    })
   ],
   css: {
     postcss: {

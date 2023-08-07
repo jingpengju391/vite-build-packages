@@ -6,6 +6,7 @@
     "cypress.config.*",
     "nightwatch.conf.*"
   ],
+  "lib": ["ESNext", "dom"],
   "compilerOptions": {
     "moduleResolution": "node",
     "composite": true,

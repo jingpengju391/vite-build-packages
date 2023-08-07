@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-
 import path from 'path'
 import sass from 'sass'
 

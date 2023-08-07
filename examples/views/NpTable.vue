@@ -184,7 +184,7 @@ const options: JsonVirtualProps = {
     }
   }
 </script>
-<style>
+<style lang="scss" scoped>
 .card-header {
   display: flex;
   justify-content: space-between;
