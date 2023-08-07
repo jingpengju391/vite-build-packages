@@ -26,9 +26,9 @@
     "minor": "npm version minor -m 'build: update minor'",
     "patch": "npm version patch -m 'build: update patch'",
     "pub": "npm run build:vite -s && cd dist/ && npm publish --access=public && npm run figlet -s",
-    "pub:major": "npm run major && npm run build:vite -s && cd dist/ && npm publish --access=public && npm run figlet -s",
-    "pub:minor": "npm run minor && npm run build:vite -s && cd dist/ && npm publish --access=public && npm run figlet -s",
-    "pub:patch": "npm run patch && npm run build:vite -s && cd dist/ && npm publish --access=public && npm run figlet -s",
+    "pub:major": "npm run major && npm run build:vite -s && cd dist/ && npm publish --access=public && cd.. && npm run figlet -s",
+    "pub:minor": "npm run minor && npm run build:vite -s && cd dist/ && npm publish --access=public && cd.. && npm run figlet -s",
+    "pub:patch": "npm run patch && npm run build:vite -s && cd dist/ && npm publish --access=public && cd.. && npm run figlet -s",
     "unpub": "npm unpublish deep-light --force"
   },
   "dependencies": {
