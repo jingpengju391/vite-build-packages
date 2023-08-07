@@ -1,6 +1,6 @@
 {
-  "name": "aak-plus",
-  "version": "5.1.0",
+  "name": "nova-plus",
+  "version": "1.0.0",
   "description": "Components Library for deep light",
   "keywords": [
     "code-editor",
@@ -22,9 +22,9 @@
     "build:vite": "vite build",
     "figlet": "node scripts/figlet.js",
     "build": "npm run build:vite -s && npm run figlet -s",
-    "major": "npm version major -m 'build: update major' -s",
-    "minor": "npm version minor -m 'build: update minor' -s",
-    "patch": "npm version patch -m 'build: update patch' -s",
+    "major": "npm version major -m 'build: update major'",
+    "minor": "npm version minor -m 'build: update minor",
+    "patch": "npm version patch -m 'build: update patch'",
     "pub": "npm run build:vite -s && cd dist/ && npm publish --access=public && npm run figlet -s",
     "pub:major": "npm run major && npm run build:vite -s && cd dist/ && npm publish --access=public && cd .. && npm run figlet -s",
     "pub:minor": "npm run minor && npm run build:vite -s && cd dist/ && npm publish --access=public && cd .. && npm run figlet -s",
