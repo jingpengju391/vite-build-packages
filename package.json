@@ -1,5 +1,5 @@
 {
-  "name": "nova-plus",
+  "name": "thssss_i",
   "version": "1.0.0",
   "description": "Components Library for deep light",
   "keywords": [
@@ -30,7 +30,7 @@
     "pub:major": "npm run major && npm run build:vite -s && npm run pub:node -s && npm run figlet -s",
     "pub:minor": "npm run minor && npm run build:vite -s && npm run pub:node -s && npm run figlet -s",
     "pub:patch": "npm run patch && npm run build:vite -s && npm run pub:node -s && npm run figlet -s",
-    "unpub": "npm unpublish deep-light --force"
+    "unpub": "node scripts/unpublish.js"
   },
   "dependencies": {
     "monaco-editor": "^0.40.0",

@@ -16,5 +16,5 @@
 
 - #### VITE_APP_BUILD_DECLARATIONDIR ：打包类型声明文件的名称
 
-> 注意：构架打包文件夹的格式必须区别于项目中的其他文件夹例如：( __**/ ), 在创建文件夹时避免于构架打包相同格式的文件夹。修改VITE_APP_BUILD_IDENTIFY后需要去修改.gitignore避免不必要的上传。修改VITE_APP_BUILD_IDENTIFY或VITE_APP_BUILD_OUTPUTDIR后上一次的构架打包文件夹将不会清楚需要手动清楚( 以后可能更新 )
+> 注意：构架打包文件夹的格式必须区别于项目中的其他文件夹例如：( __**/ ), 在创建文件夹时避免于构架打包相同格式的文件夹。修改VITE_APP_BUILD_IDENTIFY后需要去修改.gitignore避免不必要的上传。修改VITE_APP_BUILD_IDENTIFY或VITE_APP_BUILD_OUTPUTDIR后上一次的构架打包文件夹将不会清除需要手动清除( 以后可能更新 )
 
