@@ -60,7 +60,7 @@ export default defineConfig({
         red()
       }
     },
-    compression({ algorithm: 'brotliCompress', exclude: [/\.(br)$/, /\.(gz)$/] }),
+    compression({ algorithm: 'brotliCompress', exclude: [/\.(br)$/, /\.(gz)$/, /\.(map)$/] }),
     AutoImport({
       // Auto import functions from Vue, e.g. ref, reactive, toRef...
       // 自动导入 Vue 相关函数，如：ref, reactive, toRef 等
