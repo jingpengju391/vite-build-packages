@@ -25,6 +25,10 @@
  */ 
 
   const figlet = require("figlet")
+  const { loadEnv } = require('vite')
+  const mode = process.env.NODE_ENV || 'development'
+  const {  VITE_APP_BUILD_OUTPUTDIR, VITE_APP_BUILD_IDENTIFY } = loadEnv(mode, process.cwd())
+  const OUTPUTDIR = `${VITE_APP_BUILD_IDENTIFY}${VITE_APP_BUILD_OUTPUTDIR}`
   const { name, version, author, description } = require("../package.json")
 
 
@@ -36,9 +40,15 @@
   }).join('\n')
 
   const f = ['The', name, 'Version', version, 'ESM', 'and', 'CJS', 'Standard']
+
+  const isBuild = process.argv[2]
+  !isBuild && f.push(...['upload', 'success'])
+
   const s = f.map(s => '='.repeat(s.length))
 
-  const banner = `${f.join(' ')}\n${s.join(' ')}\n${description}\n(c) ${new Date().getFullYear()-1}-${new Date().getFullYear()+1} ${author}\nReleased under the MIT License`
+  const tg = !isBuild ? 'upload time' : 'end time'
+
+  const banner = `${f.join(' ')}\n${s.join(' ')}\n${description}\nbuild source is located in root/${OUTPUTDIR}\n${tg}:${getCurrentTime()} author: ${author}`
   const descWidth = process.stdout.columns - 4
   const descRegex = new RegExp(`.{1,${descWidth}}`, 'g')
   const descLines = banner.match(descRegex)
@@ -48,3 +58,22 @@
   }).join('\n')
 
   console.log(centeredArt + '\n\n' + centeredDesc)
+
+function getCurrentTime() {
+
+  const now = new Date()
+  
+  const currentYear = now.getFullYear()
+  
+  const currentMonth = now.getMonth() + 1
+  
+  const currentDate = now.getDate()
+  
+  const currentHour = now.getHours()
+  
+  const currentMinute = now.getMinutes()
+  
+  const currentSecond = now.getSeconds()
+  
+  return `${currentYear}-${currentMonth}-${currentDate} ${currentHour}:${currentMinute}:${currentSecond}`
+}

@@ -1,4 +1,4 @@
 import fs from 'fs-extra'
-export default function red(){
-    fs.copySync('README.md', 'dist/README.md')
+export default function red(outputDir){
+    fs.copySync('README.md', `${outputDir}/README.md`)
 }

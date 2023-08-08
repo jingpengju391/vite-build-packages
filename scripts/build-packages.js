@@ -55,51 +55,52 @@ const banner =
   ' * Released under the MIT License.\n' +
   ' */'
 
-export default 
-{
-  cssTarget: "chrome80",
-  minify: "terser",
-  sourcemap: true,
-  terserOptions: {
-    compress: {
-      keep_infinity: true,
-      drop_console: true, 
-      drop_debugger: true
-    }
-  },
-  chunkSizeWarningLimit: 2000,
-  rollupOptions: {
-    external,
-    input: ["packages/index.ts"],
-    output: [
-      {
-        format: "esm",
-        entryFileNames: "[name].mjs",
-        preserveModules: true,
-        exports: "named",
-        dir: "dist/es",
-        globals,
-        banner,
-        assetFileNames: 'assets/[name].[ext]',
-        compact: true,
-        minifyInternalExports: true
-      },
-      {
-        format: "cjs",
-        entryFileNames: "[name].js",
-        preserveModules: true,
-        exports: "named",
-        dir: "dist/lib",
-        globals,
-        banner,
-        assetFileNames: 'assets/[name].[ext]',
-        compact: true,
-        minifyInternalExports: true
+export default function buildPackages(outputDir){
+  return {
+    cssTarget: "chrome80",
+    minify: "terser",
+    sourcemap: true,
+    terserOptions: {
+      compress: {
+        keep_infinity: true,
+        drop_console: true, 
+        drop_debugger: true
       }
-    ]
-  },
-  lib: {
-    entry: "./packages/index.ts"
+    },
+    chunkSizeWarningLimit: 2000,
+    rollupOptions: {
+      external,
+      input: ["packages/index.ts"],
+      output: [
+        {
+          format: "esm",
+          entryFileNames: "[name].mjs",
+          preserveModules: true,
+          exports: "named",
+          dir: `${outputDir}/es`,
+          globals,
+          banner,
+          assetFileNames: 'assets/[name].[ext]',
+          compact: true,
+          minifyInternalExports: true
+        },
+        {
+          format: "cjs",
+          entryFileNames: "[name].js",
+          preserveModules: true,
+          exports: "named",
+          dir: `${outputDir}/lib`,
+          globals,
+          banner,
+          assetFileNames: 'assets/[name].[ext]',
+          compact: true,
+          minifyInternalExports: true
+        }
+      ]
+    },
+    lib: {
+      entry: "./packages/index.ts"
+    }
   }
 }
 
