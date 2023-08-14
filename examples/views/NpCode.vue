@@ -24,6 +24,7 @@
 <script lang="ts" setup>
 import {ref, onMounted} from 'vue'
 import { CodeXpert } from '@packages'
+import { CodeEditorXpert } from '@/components/code-xpert/type'
 import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
 import * as monaco from 'monaco-editor'
 import { suggestions, highlightItem, hoverProvider } from './suggestions'
@@ -36,11 +37,11 @@ self.MonacoEnvironment = {
   }
 }
 
-const codeXpertRef = ref<any>()
+const codeXpertRef = ref<CodeEditorXpert>()
 
 onMounted(() => {
 
-  codeXpertRef.value.editor.addAction({
+  codeXpertRef.value!.addAction({
     id: 'save-shortcut',
     label: 'Save',
     keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS],
@@ -48,7 +49,7 @@ onMounted(() => {
       console.log('save')
     }
   })
-  codeXpertRef.value.editor.onDidChangeModelContent(() => {
+  codeXpertRef.value!.onDidChangeModelContent(() => {
   })
 })
 </script>

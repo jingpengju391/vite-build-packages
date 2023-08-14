@@ -1,5 +1,10 @@
 import * as monaco from 'monaco-editor'
 
+export interface CodeEditorXpert extends monaco.editor.IStandaloneCodeEditor {
+    editor: monaco.editor.IStandaloneCodeEditor
+    refEditor: HTMLDivElement| null
+}
+
 export interface IStandaloneEditorConstructionOptions extends monaco.editor.IStandaloneEditorConstructionOptions {
     preventDefault?: boolean
 }
