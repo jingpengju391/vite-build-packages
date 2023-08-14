@@ -1,5 +1,6 @@
 import { evalRight } from "@/utils"
 import { monacos } from "."
+import * as monaco from 'monaco-editor'
 import { CompletionItem, HighlightItem, IStandaloneEditorConstructionOptions } from "./type"
 
 export function setHighlight(properties: IStandaloneEditorConstructionOptions, completionItems: Partial<CompletionItem>[] = [], highlightItem: HighlightItem[] = []){
@@ -17,17 +18,18 @@ export function setHighlight(properties: IStandaloneEditorConstructionOptions, c
 }
 
 
-export function setTheme(properties: IStandaloneEditorConstructionOptions, completionItems: Partial<CompletionItem>[] = [], highlightItem: HighlightItem[] = []){
-    const themeTokens = getThemeTokens([...completionItems, ...highlightItem])
+export function setTheme(properties: IStandaloneEditorConstructionOptions, completionItems: Partial<CompletionItem>[] = [], highlightItem: HighlightItem[] = [], theme: Partial<monaco.editor.IStandaloneThemeData> = {}){
+    const rules = getThemeTokens([...completionItems, ...highlightItem])
     monacos.editor.defineTheme(`${properties.language!}Theme`, {
         base: 'vs',
         inherit: true,
-        rules: [
-            ...themeTokens,
-        ],
         colors: {
-            'editor.background': '#ffffff'
-        }
+            'editor.background': '#ffffff',
+            'editor.selectionHighlightBackground': '#66b1ff',
+            'editor.inactiveSelectionBackground': '#66b1ff'
+        },
+        ...theme,
+        rules
     })
     monacos.editor.setTheme(`${properties.language!}Theme`)
 }

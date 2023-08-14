@@ -16,20 +16,20 @@ export default defineComponent({
     suggestions: Array as PropType<Partial<CompletionItem>[]>,
     triggerCharacters: Array as PropType<string[]>,
     highlightItem: Array as PropType<HighlightItem[]>,
-    hoverProvider: Array as PropType<HoverProvider[]>
+    hoverProvider: Array as PropType<HoverProvider[]>,
+    theme: Object as PropType<Partial<monaco.editor.IStandaloneThemeData>>
   },
   setup(props) {
    
     const refEditor = ref<HTMLDivElement| null>(null)
     let editor:monaco.editor.IStandaloneCodeEditor|null = null
 
-
     const initEditor = () =>  {
       if(!refEditor.value) return 
       const properties =  __assignDefaultProperty(defaultProperty, props.options || {})
       const triggerCharacters =  [...new Set([...defaultTriggerCharacters, ...(props.triggerCharacters || [])])]
       properties.preventDefault &&  preventEventBubbling()
-      setTheme(properties, props.suggestions, props.highlightItem)
+      setTheme(properties, props.suggestions, props.highlightItem, props.theme)
       setHighlight(properties, props.suggestions, props.highlightItem)
       handleHoverProvider(properties, props.suggestions, props.hoverProvider)
       editor = monaco.editor.create(refEditor.value, properties)
