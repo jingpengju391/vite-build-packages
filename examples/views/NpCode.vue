@@ -8,10 +8,11 @@
           </div>
         </template>
         <ul>
-          <li>完整功能：服务端排序代理、服务端筛选代理、服务端分页代理、服务端增删改查、服务端导入导出</li>
-      <li>对于分页场景下，如果想要保留选中状态，可以通过设置 checkbox-config 的 reserve 属性</li>
-      <li>还可以通过 checkMethod 设置个性化列禁止勾选</li>
-      <li>由 vxe-grid 代理数据转换，只需要配置好数据源即可；非常简单就可以渲染一个表格，从重复写冗余的代码中解放出来</li>
+          <li>options: IStandaloneEditorConstructionOptions</li>
+          <li>uggestions: CompletionItem</li>
+          <li>striggerCharacters: string[]</li>
+          <li>highlightItem: HighlightItem[]</li>
+          <li>hhoverProvider: HoverProvider[]</li>
         </ul>
       </el-card>
       <el-card class="box-card con-box" shadow="hover">
