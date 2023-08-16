@@ -1,16 +1,13 @@
 import * as monaco from 'monaco-editor'
 
-export interface CodeEditorXpert extends monaco.editor.IStandaloneCodeEditor {
-    editor: monaco.editor.IStandaloneCodeEditor
-    refEditor: HTMLDivElement| null
-}
-
 export interface IStandaloneEditorConstructionOptions extends monaco.editor.IStandaloneEditorConstructionOptions {
     preventDefault?: boolean
 }
 
+// @ts-ignore
 export interface CompletionItem extends monaco.languages.CompletionItem {
     color?: string
+    range?: monaco.IRange | monaco.languages.CompletionItemRanges
 }
 
 export interface HighlightItem {
@@ -32,4 +29,27 @@ export enum CodeContainer {
     NAMA = 'CodeXpert',
     EMPTYSTRING = '',
     ID = "code-xpert"
+}
+
+
+export interface CompletionContext {
+    word: string | null
+    /**
+     * How the completion was triggered.
+     */
+    triggerKind: monaco.languages.CompletionTriggerKind | null
+    /**
+     * Character that triggered the completion item provider.
+     *
+     * `undefined` if provider was not triggered by a character.
+     */
+    triggerCharacter?: string
+    triggerLength?: number
+}
+
+
+export interface CodeEditorXpert extends monaco.editor.IStandaloneCodeEditor {
+    editor: monaco.editor.IStandaloneCodeEditor
+    refEditor: HTMLDivElement| null
+    getCompletionContext() : CompletionContext
 }

@@ -4,8 +4,9 @@ import './style/editor-style.scss'
 import './style/icon-style.css'
 import { __assignDefaultProperty } from '@/utils'
 import { defaultProperty, defaultTriggerCharacters } from './defaultProperty'
+import { getCompletionContextByEditor } from  './defaultEvent'
 import { registerCompletion } from './registerCompletion'
-import { IStandaloneEditorConstructionOptions, CompletionItem, CodeContainer, HighlightItem, HoverProvider } from './type'
+import { IStandaloneEditorConstructionOptions, CompletionItem, CodeContainer, HighlightItem, HoverProvider, CompletionContext } from './type'
 import { setTheme, setHighlight } from './codeHighlight'
 import { handleHoverProvider } from './hoverProvider'
 import { preventEventBubbling } from './defaultEvent'
@@ -13,7 +14,7 @@ export default defineComponent({
   name: CodeContainer.NAMA,
   props: {
     options: Object as PropType<IStandaloneEditorConstructionOptions>,
-    suggestions: Array as PropType<Partial<CompletionItem>[]>,
+    suggestions: Array as PropType<CompletionItem[]>,
     triggerCharacters: Array as PropType<string[]>,
     highlightItem: Array as PropType<HighlightItem[]>,
     hoverProvider: Array as PropType<HoverProvider[]>,
@@ -23,17 +24,18 @@ export default defineComponent({
    
     const refEditor = ref<HTMLDivElement| null>(null)
     let editor:monaco.editor.IStandaloneCodeEditor|null = null
+    const triggerCharacters: string[] = []
 
     const initEditor = () =>  {
       if(!refEditor.value) return 
       const properties =  __assignDefaultProperty(defaultProperty, props.options || {})
-      const triggerCharacters =  [...new Set([...defaultTriggerCharacters, ...(props.triggerCharacters || [])])]
+      triggerCharacters.push(...[...new Set([...defaultTriggerCharacters, ...(props.triggerCharacters || [])])])
       properties.preventDefault &&  preventEventBubbling()
       setTheme(properties, props.suggestions, props.highlightItem, props.theme)
       setHighlight(properties, props.suggestions, props.highlightItem)
       handleHoverProvider(properties, props.suggestions, props.hoverProvider)
       editor = monaco.editor.create(refEditor.value, properties)
-      editor.onDidChangeModelContent(() => registerCompletion(props.suggestions || [], properties, triggerCharacters))
+      editor.onDidChangeModelContent(() => registerCompletion(props.suggestions || [], properties, triggerCharacters, editor!))
     }
 
     const disposeEditor = () => {
@@ -858,6 +860,15 @@ export default defineComponent({
       return editor!.createDecorationsCollection(decorations)
     }
 
+    /**
+     * Contains additional information about the context in which
+     * {@link CompletionItemProvider.provideCompletionItems completion provider} is triggered.
+     */
+    const getCompletionContext = (): CompletionContext => {
+      return getCompletionContextByEditor(editor!, triggerCharacters)
+    }
+    
+
     return {
       editor,
       refEditor,
@@ -984,7 +995,8 @@ export default defineComponent({
       revealRangeNearTop,
       revealRangeNearTopIfOutsideViewport,
       trigger,
-      createDecorationsCollection
+      createDecorationsCollection,
+      getCompletionContext
     }
   },
   render() {

@@ -2,6 +2,9 @@ import NpTable from '../views/NpTable.vue'
 import NpCode from '../views/NpCode.vue'
 import NpVisualizer from '../views/NpVisualizer.vue'
 import NpForm from '../views/NpForm.vue'
+
+export const defaultCurrentComponentNumber = -2
+
 export const registerComponents = [
     {
         name: 'NpVisualizer',

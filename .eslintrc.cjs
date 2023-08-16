@@ -158,7 +158,7 @@ module.exports = {
         // 'new-cap': 2,//函数名首行大写必须使用new方式调用，首行小写必须用不带new方式调用
         // 'new-parens': 2,//new时必须加小括号
         // 'newline-after-var': 2,//变量声明后是否需要空一行
-        // 'object-curly-spacing': [0, 'never'],//大括号内是否允许不必要的空格
+        'object-curly-spacing': ["error", "always"], //大括号内是否允许不必要的空格
         // 'object-shorthand': 0,//强制对象字面量缩写语法
         // 'one-var': 1,//连续声明
         // 'operator-assignment': [0, 'always'],//赋值运算符 += -=什么的

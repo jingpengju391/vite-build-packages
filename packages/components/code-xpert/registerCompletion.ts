@@ -1,9 +1,10 @@
 import { monacos } from "."
 import { CompletionItem, IStandaloneEditorConstructionOptions } from "./type"
 import * as monaco from 'monaco-editor'
+import { getCompletionContextByEditor, splitStrings } from "./defaultEvent"
 let registerCompletionItem: monaco.IDisposable | undefined
 
-export function registerCompletion(completionItems: Partial<CompletionItem>[], properties: IStandaloneEditorConstructionOptions, triggerCharacters: string[]) {
+export function registerCompletion(completionItems: CompletionItem[], properties: IStandaloneEditorConstructionOptions, triggerCharacters: string[], editor: monaco.editor.IStandaloneCodeEditor) {
     registerCompletionItem && registerCompletionItem.dispose()
     registerCompletionItem = monacos.languages.registerCompletionItemProvider(properties.language!, {
         triggerCharacters: splitStrings(triggerCharacters),
@@ -12,8 +13,9 @@ export function registerCompletion(completionItems: Partial<CompletionItem>[], p
          */
         // @ts-ignore
         provideCompletionItems: (model, position) => {
-            const suggestions = checkSuggestionsByValue(model, position, triggerCharacters) ? completionItems.map(suggestion => {
-                return {
+            const range = new monaco.Range(position.lineNumber, 1, position.lineNumber, position.column)
+            const suggestions: monaco.languages.CompletionItem[] = checkSuggestionsByValue(editor, triggerCharacters) ? completionItems.map(suggestion => {
+                return <monaco.languages.CompletionItem>{
                     /**
                      * The label of this completion item. By default
                      * this is also the text that is inserted when selecting
@@ -76,7 +78,7 @@ export function registerCompletion(completionItems: Partial<CompletionItem>[], p
                      * *Note:* The range must be a {@link Range.isSingleLine single line} and it must
                      * {@link Range.contains contain} the position at which completion has been {@link CompletionItemProvider.provideCompletionItems requested}.
                      */
-                    range: suggestion.range,
+                    range: suggestion.range || range,
                     /**
                      * An optional set of characters that when pressed while this completion is active will accept it first and
                      * then type that character. *Note* that all commit characters should have `length=1` and that superfluous
@@ -101,23 +103,16 @@ export function registerCompletion(completionItems: Partial<CompletionItem>[], p
     })
 }
 
-export function splitStrings(strs: string[]): string[] {
-    return [...strs.flatMap(str => str.split(''))]
-}
+export function checkSuggestionsByValue(editor: monaco.editor.IStandaloneCodeEditor, triggerCharacters: string[]): boolean {
+    const cxt = getCompletionContextByEditor(editor, triggerCharacters)
 
-export function checkSuggestionsByValue(model: monaco.editor.ITextModel, position: monaco.Position, triggerCharacters: string[]): boolean {
-    const word = model.getWordAtPosition(position)?.word
-    if(word) return true
+    if(!cxt.word) return false
 
-    const text = model.getValue()
+    if(cxt.triggerKind === monaco.languages.CompletionTriggerKind.Invoke) return true
 
-    const specialChars = text.match(/[^a-zA-Z0-9\s]+$/)
+    if(!cxt.triggerCharacter) return false
 
-    if(!specialChars) return false
-
-    if(!triggerCharacters.includes(specialChars[0])) return false
-
-    return true
+    return triggerCharacters.includes(cxt.triggerCharacter)
 }
 
 

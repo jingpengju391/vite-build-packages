@@ -22,7 +22,7 @@
 </template>
   
 <script lang="ts" setup>
-import {ref, onMounted} from 'vue'
+import { ref, onMounted } from 'vue'
 import { CodeXpert } from '@packages'
 import { CodeEditorXpert } from '@/components/code-xpert/type'
 import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'

@@ -44,13 +44,13 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
 import { Menu as IconMenu, Setting } from '@element-plus/icons-vue'
-import { registerComponents } from './hook'
+import { registerComponents, defaultCurrentComponentNumber } from './hook'
 import Dialog from './views/Dialog.vue'
 import { turnoff } from './hook/snake'
 
 const isCollapse = ref(true)
 
-const latestComponent = computed(() => registerComponents.at(-1))
+const latestComponent = computed(() => registerComponents.at(defaultCurrentComponentNumber))
 
 const latestComponentName = computed(() => latestComponent.value?.name || '' )
 

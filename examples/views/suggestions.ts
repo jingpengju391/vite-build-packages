@@ -1,7 +1,7 @@
 import { CompletionItem } from '@/components/code-xpert/type'
 import * as monaco from 'monaco-editor'
 
-export const suggestions: Partial<CompletionItem>[] = [
+export const suggestions: CompletionItem[] = [
     {
       label: 'myText',
       kind: monaco.languages.CompletionItemKind.Text,
