@@ -1,8 +1,8 @@
 import { CodeContainer } from "./type"
 
-export function preventEventBubbling(){
+export function preventEventBubbling() {
     const codeEditorBox = document.getElementById(CodeContainer.ID)
-    if(codeEditorBox){
+    if(codeEditorBox) {
         codeEditorBox.addEventListener('dragover', (event: Event) => {
             event.stopPropagation()
             event.preventDefault()

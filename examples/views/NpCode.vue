@@ -16,7 +16,7 @@
         </ul>
       </el-card>
       <el-card class="box-card con-box" shadow="hover">
-        <code-xpert ref="codeXpertRef" :suggestions="suggestions" :triggerCharacters="['->','&&','@@','::']" :highlightItem="highlightItem" :hoverProvider="hoverProvider"></code-xpert>
+        <code-xpert ref="codeXpertRef" :options="options" :suggestions="suggestions" :triggerCharacters="['->','&&','@@','::']" :highlightItem="highlightItem" :hoverProvider="hoverProvider"></code-xpert>
       </el-card>
     </div>
 </template>
@@ -35,6 +35,12 @@ self.MonacoEnvironment = {
   getWorker() {
     return new editorWorker()
   }
+}
+
+const options = {
+  value: [
+    "return 555555;\n\n\n\n\n\n\n\n\nreturn 555555;\n\n\n\n\n\n\n\n\nreturn 555555;\n\n\n\n\n\n\n\n\nreturn 555555;\n\n\n\n\n\n\n\n\nreturn 555555;\n\n\n\n\n\n\n\n\n\n",
+  ].join('\n'),
 }
 
 const codeXpertRef = ref<CodeEditorXpert>()

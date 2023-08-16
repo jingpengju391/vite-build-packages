@@ -82,7 +82,7 @@
         clearInterval(intervalId)
        
 
-        if( operate.value !== 'suspend' && operate.value !== ''){
+        if( operate.value !== 'suspend' && operate.value !== '') {
           snake.value = [{ x: 0, y: 0 }]
           direction.value = { x: 1, y: 0 }
           score.value = 0

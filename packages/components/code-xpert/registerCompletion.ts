@@ -3,7 +3,7 @@ import { CompletionItem, IStandaloneEditorConstructionOptions } from "./type"
 import * as monaco from 'monaco-editor'
 let registerCompletionItem: monaco.IDisposable | undefined
 
-export function registerCompletion(completionItems: Partial<CompletionItem>[], properties: IStandaloneEditorConstructionOptions, triggerCharacters: string[]){
+export function registerCompletion(completionItems: Partial<CompletionItem>[], properties: IStandaloneEditorConstructionOptions, triggerCharacters: string[]) {
     registerCompletionItem && registerCompletionItem.dispose()
     registerCompletionItem = monacos.languages.registerCompletionItemProvider(properties.language!, {
         triggerCharacters: splitStrings(triggerCharacters),
@@ -101,7 +101,7 @@ export function registerCompletion(completionItems: Partial<CompletionItem>[], p
     })
 }
 
-export function splitStrings(strs: string[]): string[]{
+export function splitStrings(strs: string[]): string[] {
     return [...strs.flatMap(str => str.split(''))]
 }
 

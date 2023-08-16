@@ -299,7 +299,7 @@ export default defineComponent({
      * Get value of the current model attached to this editor.
      * @see {@link ITextModel.getValue}
      */
-    const getValue = (options?: { preserveBOM: boolean , lineEnding: string}): string => {
+    const getValue = (options?: { preserveBOM: boolean, lineEnding: string}): string => {
       return editor!.getValue(options)
     }
     /**
@@ -955,7 +955,7 @@ export default defineComponent({
       getId,
       getEditorType,
       layout,
-      focus ,
+      focus,
       hasTextFocus, 
       getSupportedActions,
       getVisibleColumnFromPosition,
@@ -965,7 +965,7 @@ export default defineComponent({
       revealLineInCenter,
       revealLineInCenterIfOutsideViewport,
       revealLineNearTop,
-      revealPosition ,
+      revealPosition,
       revealPositionInCenter,
       revealPositionInCenterIfOutsideViewport,
       revealPositionNearTop,

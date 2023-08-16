@@ -3,7 +3,7 @@ import { monacos } from "."
 import * as monaco from 'monaco-editor'
 import { CompletionItem, HighlightItem, IStandaloneEditorConstructionOptions } from "./type"
 
-export function setHighlight(properties: IStandaloneEditorConstructionOptions, completionItems: Partial<CompletionItem>[] = [], highlightItem: HighlightItem[] = []){
+export function setHighlight(properties: IStandaloneEditorConstructionOptions, completionItems: Partial<CompletionItem>[] = [], highlightItem: HighlightItem[] = []) {
     const monarchTokens = getMonarchTokens([...completionItems, ...highlightItem])
 
     monacos.languages.setMonarchTokensProvider(properties.language!, {
@@ -18,7 +18,7 @@ export function setHighlight(properties: IStandaloneEditorConstructionOptions, c
 }
 
 
-export function setTheme(properties: IStandaloneEditorConstructionOptions, completionItems: Partial<CompletionItem>[] = [], highlightItem: HighlightItem[] = [], theme: Partial<monaco.editor.IStandaloneThemeData> = {}){
+export function setTheme(properties: IStandaloneEditorConstructionOptions, completionItems: Partial<CompletionItem>[] = [], highlightItem: HighlightItem[] = [], theme: Partial<monaco.editor.IStandaloneThemeData> = {}) {
     const rules = getThemeTokens([...completionItems, ...highlightItem])
     monacos.editor.defineTheme(`${properties.language!}Theme`, {
         base: 'vs',
@@ -34,20 +34,20 @@ export function setTheme(properties: IStandaloneEditorConstructionOptions, compl
     monacos.editor.setTheme(`${properties.language!}Theme`)
 }
 
-function getCompletionItemsWithProperty(completionItems: Partial<CompletionItem>[]): Partial<CompletionItem>[]{
+function getCompletionItemsWithProperty(completionItems: Partial<CompletionItem>[]): Partial<CompletionItem>[] {
     return completionItems
     .filter(completionItem => completionItem.color && completionItem.label)
 }
 
 
-function getMonarchTokens(completionItems: Partial<CompletionItem>[]): any[]{
+function getMonarchTokens(completionItems: Partial<CompletionItem>[]): any[] {
     return getCompletionItemsWithProperty(completionItems).map(completionItem => {
             return [evalRight(`/\\b${completionItem.label}\\b/`), completionItem.label]
     })
 }
 
 
-function getThemeTokens(completionItems: Partial<CompletionItem>[]): any[]{
+function getThemeTokens(completionItems: Partial<CompletionItem>[]): any[] {
     return getCompletionItemsWithProperty(completionItems).map(completionItem => {
             return {
                 token: completionItem.label,
