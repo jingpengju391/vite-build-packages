@@ -13,8 +13,8 @@ export function handleHoverProvider(properties: IStandaloneEditorConstructionOpt
                     return {
                         range: new monaco.Range(position.lineNumber, word.startColumn, position.lineNumber, word.endColumn),
                         contents: provider.contents || [
-                            { value: `**${provider.detail || word}**`},
-                            { value: provider.documentation || provider.label}
+                            { value: `**${provider.detail || word}**` },
+                            { value: provider.documentation || provider.label }
                         ]
                     }
                 }
