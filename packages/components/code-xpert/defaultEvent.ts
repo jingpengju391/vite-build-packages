@@ -29,11 +29,14 @@ export function getCompletionContextByEditor(editor: monaco.editor.IStandaloneCo
     const lineContent = model.getLineContent(position.lineNumber)
     let stop = false
     let endPos = position.column - 2
+    const bracket = { num: 0, bracket: '' }
     const regChar = /[a-zA-Z0-9_]/
+    const regRightBracket = /[\\)\]\\}]/
+    const regLeftBracket = /[\\(\\[\\{]/
     const regTrigger = evalRight(`/[\\${splitStrings(triggerCharacters).join('\\')}]/`)
     const tempWords = []
     const tempTriggerCharacters = []
-    while(endPos > 0 && !stop) {
+    while(endPos >= 0 && !stop) {
         const char = lineContent[endPos]
         if(!completion.triggerKind) {
             if(regTrigger.test(char)) {
@@ -47,15 +50,46 @@ export function getCompletionContextByEditor(editor: monaco.editor.IStandaloneCo
             }
         }else{
             if(regTrigger.test(char)) {
-                if(completion.word) {
+                if(tempWords.length) {
                     stop = true
                 }else{
                     tempTriggerCharacters.push(char)
                 }
-            }else if(regChar.test(char)) {
-                tempWords.push(char)
             }else{
-                stop = true
+                if(regRightBracket.test(char)) {
+                    if(tempWords.length) {
+                        stop = true
+                    }else{
+                       
+                        switch (char) {
+                            case ')':
+                                bracket.bracket = !bracket.num ? '(' : bracket.bracket
+                                break
+                            case '}':
+                                bracket.bracket = !bracket.num ? '{' : bracket.bracket
+                                break
+                            case ']':
+                                bracket.bracket = !bracket.num ? '[' : bracket.bracket
+                                break
+                        }
+
+                        if(char === lineContent[position.column - 2 - tempTriggerCharacters.length]) {
+                            bracket.num++
+                        }
+                    }
+                }else if(regLeftBracket.test(char)) {
+                    if(tempWords.length) {
+                        stop = true
+                    }else{
+                        if(char === bracket.bracket) {
+                            bracket.num--
+                        }
+                    }
+                }else if(regChar.test(char)) {
+                    !bracket.num && tempWords.push(char)
+                }else{
+                    stop = !bracket.num
+                }
             }
         }
         endPos--
