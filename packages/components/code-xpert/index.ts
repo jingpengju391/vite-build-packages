@@ -1,4 +1,4 @@
-import { h, defineComponent, ref, onMounted, PropType, onUnmounted } from 'vue'
+import { h, defineComponent, ref, onMounted, PropType, onUnmounted, watch } from 'vue'
 import * as monaco from 'monaco-editor'
 import './style/editor-style.scss'
 import './style/icon-style.css'
@@ -24,11 +24,12 @@ export default defineComponent({
    
     const refEditor = ref<HTMLDivElement| null>(null)
     let editor:monaco.editor.IStandaloneCodeEditor|null = null
+    let properties:IStandaloneEditorConstructionOptions = {}
     const triggerCharacters: string[] = []
 
     const initEditor = () =>  {
       if(!refEditor.value) return 
-      const properties =  __assignDefaultProperty(defaultProperty, props.options || {})
+      properties =  __assignDefaultProperty(defaultProperty, props.options || {})
       triggerCharacters.push(...[...new Set([...defaultTriggerCharacters, ...(props.triggerCharacters || [])])])
       properties.preventDefault &&  preventEventBubbling()
       setTheme(properties, props.suggestions, props.highlightItem, props.theme)
@@ -37,6 +38,8 @@ export default defineComponent({
       editor = monaco.editor.create(refEditor.value, properties)
       editor.onDidChangeModelContent(() => registerCompletion(props.suggestions || [], properties, triggerCharacters, editor!))
     }
+
+    watch(() => props, () => initEditor(), { deep: true })
 
     const disposeEditor = () => {
       editor && editor.dispose()

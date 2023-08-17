@@ -2,20 +2,23 @@ import { monacos } from "."
 import * as monaco from 'monaco-editor'
 import { CompletionItem, HoverProvider, IStandaloneEditorConstructionOptions } from "./type"
 
+let registerHoverProvider: monaco.IDisposable | undefined
+
 export function handleHoverProvider(properties: IStandaloneEditorConstructionOptions, completionItems: Partial<CompletionItem>[] = [], hoverProviders: HoverProvider[] = []) {
+    registerHoverProvider && registerHoverProvider.dispose()
     hoverProviders = [...getHoverProvidersWithSuggestions(completionItems), ...hoverProviders]
-    monacos.languages.registerHoverProvider(properties.language!, {
+    registerHoverProvider = monacos.languages.registerHoverProvider(properties.language!, {
         provideHover: (model, position) => {
             const word = model.getWordAtPosition(position)
             if(word?.word) {
                 const provider = hoverProviders.find(hoverProvider => hoverProvider.label === word.word)
+                const defaultContents = []
                 if(provider) {
+                    provider.detail && defaultContents.push({ value: `**${provider.detail || word}**` })
+                    provider.documentation && defaultContents.push({ value: provider.documentation || provider.label })
                     return {
                         range: new monaco.Range(position.lineNumber, word.startColumn, position.lineNumber, word.endColumn),
-                        contents: provider.contents || [
-                            { value: `**${provider.detail || word}**` },
-                            { value: provider.documentation || provider.label }
-                        ]
+                        contents: provider.contents || defaultContents
                     }
                 }
             }
