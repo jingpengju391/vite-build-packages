@@ -35,11 +35,16 @@ export default defineComponent({
       setTheme(properties, props.suggestions, props.highlightItem, props.theme)
       setHighlight(properties, props.suggestions, props.highlightItem)
       handleHoverProvider(properties, props.suggestions, props.hoverProvider)
+      registerCompletion(props.suggestions || [], properties, triggerCharacters, editor!)
       editor = monaco.editor.create(refEditor.value, properties)
-      editor.onDidChangeModelContent(() => registerCompletion(props.suggestions || [], properties, triggerCharacters, editor!))
     }
 
-    watch(() => props, () => initEditor(), { deep: true })
+    watch(() => [props.highlightItem, props.hoverProvider, props.suggestions, props.theme, props.triggerCharacters], () => {
+      setTheme(properties, props.suggestions, props.highlightItem, props.theme)
+      setHighlight(properties, props.suggestions, props.highlightItem)
+      handleHoverProvider(properties, props.suggestions, props.hoverProvider)
+      registerCompletion(props.suggestions || [], properties, triggerCharacters, editor!)
+    }, { deep: true })
 
     const disposeEditor = () => {
       editor && editor.dispose()
