@@ -12,8 +12,8 @@ export function registerCompletion(completionItems: CompletionItem[], properties
          * Provide completion items for the given position and document.
          */
         // @ts-ignore
-        provideCompletionItems: (model, position) => {
-            const range = new monaco.Range(position.lineNumber, 1, position.lineNumber, position.column)
+        provideCompletionItems: () => {
+            // const range = new monaco.Range(position.lineNumber, 1, position.lineNumber, position.column)
             const suggestions: monaco.languages.CompletionItem[] = checkSuggestionsByValue(editor, triggerCharacters) ? completionItems.map(suggestion => {
                 return <monaco.languages.CompletionItem>{
                     /**
@@ -68,7 +68,7 @@ export function registerCompletion(completionItems: CompletionItem[], properties
                      * Additional rules (as bitmask) that should be applied when inserting
                      * this completion.
                      */
-                    insertTextRules: suggestion.insertTextRules,
+                    insertTextRules: suggestion.insertTextRules || monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
                     /**
                      * A range of text that should be replaced by this completion item.
                      *
@@ -78,7 +78,7 @@ export function registerCompletion(completionItems: CompletionItem[], properties
                      * *Note:* The range must be a {@link Range.isSingleLine single line} and it must
                      * {@link Range.contains contain} the position at which completion has been {@link CompletionItemProvider.provideCompletionItems requested}.
                      */
-                    range: suggestion.range || range,
+                    range: suggestion.range,
                     /**
                      * An optional set of characters that when pressed while this completion is active will accept it first and
                      * then type that character. *Note* that all commit characters should have `length=1` and that superfluous
