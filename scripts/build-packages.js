@@ -55,7 +55,7 @@ const banner =
   ' * Released under the MIT License.\n' +
   ' */'
 
-export default function buildPackages(outputDir){
+export default function buildPackages(outputDir) {
   return {
     cssTarget: "chrome80",
     minify: "terser",

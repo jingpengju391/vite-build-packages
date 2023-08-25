@@ -1,6 +1,6 @@
 {
   "name": "nova-plus",
-  "version": "1.0.18",
+  "version": "1.0.20",
   "description": "Components Library for deep light",
   "keywords": [
     "code-editor",
@@ -51,6 +51,7 @@
     "@vue/eslint-config-typescript": "^11.0.3",
     "@vue/test-utils": "^2.3.2",
     "@vue/tsconfig": "^0.4.0",
+    "consola": "^3.2.3",
     "cowsay": "^1.5.0",
     "element-plus": "^2.3.8",
     "eslint": "^8.39.0",
@@ -73,6 +74,7 @@
     "vite-plugin-css-injected-by-js": "^3.2.1",
     "vite-plugin-dts": "^3.3.1",
     "vite-plugin-inspect": "^0.7.33",
+    "vite-plugin-style-import": "^2.0.0",
     "vitest": "^0.32.0",
     "vue-tsc": "^1.6.5"
   },

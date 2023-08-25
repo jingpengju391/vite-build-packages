@@ -51,7 +51,7 @@ const options: JsonVirtualProps = {
 
 ## Components List
 
-#### JsonVirtualTable
+#### JsonVirtualTable (disable)
 
 - a component ablout virtual table, it's nased on Vxe Table secondary development[ ( more ) ](https://github.com/jingpengju391/vite-build-packages/blob/master/docs/README.TABLE.md).
 

@@ -14,6 +14,8 @@ import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import Inspect from 'vite-plugin-inspect'
 import { visualizer } from 'rollup-plugin-visualizer'
+
+// import { createStyleImportPlugin, VxeTableResolve } from 'vite-plugin-style-import'
 // import postcssMixins from "postcss-mixins"
 // import  { libInjectCss } from 'vite-plugin-lib-inject-css'
 // import libCss from 'vite-plugin-libcss'
@@ -105,14 +107,25 @@ export default defineConfig({
       ],
       dts: './auto-imports.d.ts',
     }),
+    // createStyleImportPlugin({
+    //   resolves: [
+    //     VxeTableResolve()
+    //   ],
+    // }),
     Components({
+      // dirs: ['packages/components'],
+      // extensions: ['vue', 'ts'],
+      // globs: ['packages/components/*.{vue}', 'packages/components/*.{ts}'],
+      // dts: true,
+      // directoryAsNamespace: true,
+      // collapseSamePrefixes: true,
       resolvers: [
         // Auto register icon components
         IconsResolver({
           enabledCollections: ['ep'],
         }),
         // Auto register Element Plus components
-        ElementPlusResolver(),
+        ElementPlusResolver()
       ],
       dts: './components.d.ts',
     }),
