@@ -2,7 +2,7 @@
   <el-card class="box-card" shadow="hover">
     <template #header>
       <div class="card-header">
-        <span>完整的功能</span>
+        <span>完整的功能(开发中...)</span>
         <el-link type="info" href="https://vxetable.cn/#/table/grid/fullEdit" target="_blank">更多信息</el-link>
       </div>
     </template>

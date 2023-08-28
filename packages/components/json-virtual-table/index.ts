@@ -194,7 +194,7 @@ export default defineComponent({
         }
       },
       h(
-        Grid,
+        'div',
         {
           ...omit(omitProperty, properties),
           ...omit(omitEvent, __overWents(__assignDefaultEvent(defaultEvent, this.events)))
