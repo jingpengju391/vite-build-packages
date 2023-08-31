@@ -9,7 +9,7 @@ import {
   onBeforeMount,
   ComponentInternalInstance
 } from 'vue'
-import { VxeGridListeners, VxeGridInstance, Grid, VxeTableDefines } from 'vxe-table'
+import { VxeGridListeners, VxeGridInstance, VxeTableDefines } from 'vxe-table'
 import Sortable from 'sortablejs'
 
 import { evalRight, omit } from '../../utils'

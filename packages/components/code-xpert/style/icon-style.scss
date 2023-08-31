@@ -1,0 +1,181 @@
+/* This's CompletionItemKind value
+    Method = 0,
+    Function = 1,
+    Constructor = 2,
+    Field = 3,
+    Variable = 4,
+    Class = 5,
+    Struct = 6,
+    Interface = 7,
+    Module = 8,
+    Property = 9,
+    Event = 10,
+    Operator = 11,
+    Unit = 12,
+    Value = 13,
+    Constant = 14,
+    Enum = 15,
+    EnumMember = 16,
+    Keyword = 17,
+    Text = 18,
+    Color = 19,
+    File = 20,
+    Reference = 21,
+    Customcolor = 22,
+    Folder = 23,
+    TypeParameter = 24,
+    User = 25,
+    Issue = 26,
+    Snippet = 27
+   CSS multi-line comment */
+
+.codicon-symbol-method:before,
+.codicon-symbol-function:before, 
+.codicon-symbol-constructor:before, 
+.codicon-symbol-field:before, 
+.codicon-symbol-snippet:before, 
+.codicon-symbol-class:before, 
+.codicon-symbol-struct:before, 
+.codicon-symbol-interface:before, 
+.codicon-symbol-module:before, 
+.codicon-symbol-property:before, 
+.codicon-symbol-event:before, 
+.codicon-symbol-operator:before, 
+.codicon-symbol-unit:before, 
+.codicon-symbol-value:before, 
+.codicon-symbol-constant:before, 
+.codicon-symbol-enum:before,
+.codicon-symbol-enum-member:before, 
+.codicon-symbol-keyword:before, 
+.codicon-symbol-text:before, 
+.codicon-symbol-color:before, 
+.codicon-symbol-file:before, 
+.codicon-symbol-reference:before,
+.codicon-symbol-customcolor:before, 
+.codicon-symbol-folder:before, 
+.codicon-symbol-type-parameter:before, 
+.codicon-account:before,
+.codicon-issues:before,
+.codicon-symbol-variable::before {
+  display: block;
+  width: 16px;
+  height: 16px;
+  background-size: cover;
+/* 
+  content:"\e8b2" !important;
+  font-family:"element-icons" !important;
+  margin-right: 5px; */
+}
+
+/* element-plus icons update link https://github.com/element-plus/element-plus-icons/tree/main */
+.codicon-symbol-method:before {
+  content: var(--icon-url-method) !important;
+}
+
+.codicon-symbol-function:before {
+  content: var(--icon-url-function) !important;
+}
+
+.codicon-symbol-constructor:before {
+  content: var(--icon-url-constructor) !important;
+} 
+
+.codicon-symbol-field:before {
+  content: var(--icon-url-field) !important;
+} 
+
+.codicon-symbol-variable:before {
+  content: var(--icon-url-variable) !important;
+}
+
+.codicon-symbol-class:before {
+  content: var(--icon-url-class) !important;
+} 
+
+.codicon-symbol-struct:before {
+  content: var(--icon-url-struct) !important;
+} 
+
+.codicon-symbol-interface:before {
+  content: var(--icon-url-interface) !important;
+} 
+
+.codicon-symbol-module:before {
+  content: var(--icon-url-module) !important;
+} 
+
+.codicon-symbol-property:before {
+  content: var(--icon-url-property) !important;
+} 
+
+.codicon-symbol-event:before {
+  content: var(--icon-url-event) !important;
+} 
+
+.codicon-symbol-operator:before {
+  content: var(--icon-url-operator) !important;
+} 
+
+.codicon-symbol-unit:before {
+  content: var(--icon-url-unit) !important;
+} 
+
+.codicon-symbol-value:before {
+  content: var(--icon-url-value) !important;
+} 
+
+.codicon-symbol-constant:before {
+  content: var(--icon-url-constant) !important;
+} 
+
+.codicon-symbol-enum:before {
+  content: var(--icon-url-enum) !important;
+}
+
+.codicon-symbol-enum-member:before {
+  content: var(--icon-url-enum-member) !important;
+}
+
+.codicon-symbol-keyword:before {
+  content: var(--icon-url-keyword) !important;
+}
+
+.codicon-symbol-text:before {
+  content: var(--icon-url-text) !important;
+}
+
+.codicon-symbol-color:before {
+  content: var(--icon-url-color) !important;
+}
+
+.codicon-symbol-file:before {
+  content: var(--icon-url-file) !important;
+}
+
+.codicon-symbol-reference:before {
+  content: var(--icon-url-reference) !important;
+}
+
+.codicon-symbol-custom-color:before {
+  content: var(--icon-url-customColor) !important;
+}
+
+.codicon-symbol-folder:before {
+  content: var(--icon-url-folder) !important;
+}
+
+.codicon-symbol-type-parameter:before {
+  content: var(--icon-url-parameter) !important;
+}
+
+.codicon-account:before {
+  content: var(--icon-url-account) !important;
+}
+
+.codicon-issues:before {
+  content: var(--icon-url-issues) !important;
+}
+
+.codicon-symbol-snippet::before {
+  content: var(--icon-url-snippet) !important;
+}

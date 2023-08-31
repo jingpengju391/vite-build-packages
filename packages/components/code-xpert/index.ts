@@ -1,7 +1,7 @@
 import { h, defineComponent, ref, onMounted, PropType, onUnmounted, watch } from 'vue'
 import * as monaco from 'monaco-editor'
 import './style/editor-style.scss'
-import './style/icon-style.css'
+import './style/icon-style.scss'
 import { __assignDefaultProperty } from '@/utils'
 import { defaultProperty, defaultTriggerCharacters } from './defaultProperty'
 import { getCompletionContextByEditor } from  './defaultEvent'
@@ -36,9 +36,7 @@ export default defineComponent({
       setHighlight(properties, props.suggestions, props.highlightItem)
       handleHoverProvider(properties, props.suggestions, props.hoverProvider)
       editor = monaco.editor.create(refEditor.value, properties)
-      editor.onDidChangeModelContent(() => {
-        registerCompletion(props.suggestions || [], properties, triggerCharacters, editor!)
-      })
+      editor.onDidChangeModelContent(() => registerCompletion(props.suggestions || [], properties, triggerCharacters, editor!))
     }
 
     watch(() => props, () => initEditor(), { deep: true })
