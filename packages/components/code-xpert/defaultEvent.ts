@@ -1,4 +1,4 @@
-import { CodeContainer, CompletionContext } from "./type"
+import { CodeContainer, CompletionContext, IconUrlMap } from "./type"
 import * as monaco from 'monaco-editor'
 import { evalRight } from "@/utils"
 
@@ -15,7 +15,6 @@ export function preventEventBubbling() {
         })
     }
 }
-
 
 export function getCompletionContextByEditor(editor: monaco.editor.IStandaloneCodeEditor, triggerCharacters: string[]): CompletionContext {
     const completion:CompletionContext = {
@@ -107,9 +106,39 @@ export function getCompletionContextByEditor(editor: monaco.editor.IStandaloneCo
     return completion
 }
 
-
-
-
 export function splitStrings(strs: string[]): string[] {
     return [...strs.flatMap(str => str.split(''))]
+}
+
+export function getIconUrlMap(): IconUrlMap {
+    return {
+        0: '--icon-url-method',
+        1: '--icon-url-function',
+        2: '--icon-url-constructor',
+        3: '--icon-url-field',
+        4: '--icon-url-variable',
+        5: '--icon-url-class',
+        6: '--icon-url-struct',
+        7: '--icon-url-interface',
+        8: '--icon-url-module',
+        9: '--icon-url-property',
+        10: '--icon-url-event',
+        11: '--icon-url-operator',
+        12: '--icon-url-unit',
+        13: '--icon-url-value',
+        14: '--icon-url-constant',
+        15: '--icon-url-enum',
+        16: '--icon-url-enum-member',
+        17: '--icon-url-keyword',
+        18: '--icon-url-text',
+        19: '--icon-url-color',
+        20: '--icon-url-file',
+        21: '--icon-url-reference',
+        22: '--icon-url-customcolor',
+        23: '--icon-url-folder',
+        24: '--icon-url-parameter',
+        25: '--icon-url-account',
+        26: '--icon-url-issues',
+        27: '--icon-url-snippet'
+    }
 }

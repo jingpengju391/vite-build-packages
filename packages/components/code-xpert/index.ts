@@ -4,9 +4,9 @@ import './style/editor-style.scss'
 import './style/icon-style.scss'
 import { __assignDefaultProperty } from '@/utils'
 import { defaultProperty, defaultTriggerCharacters } from './defaultProperty'
-import { getCompletionContextByEditor } from  './defaultEvent'
+import { getCompletionContextByEditor, getIconUrlMap } from  './defaultEvent'
 import { registerCompletion } from './registerCompletion'
-import { IStandaloneEditorConstructionOptions, CompletionItem, CodeContainer, HighlightItem, HoverProvider, CompletionContext } from './type'
+import { IStandaloneEditorConstructionOptions, CompletionItem, CodeContainer, HighlightItem, HoverProvider, CompletionContext, IconUrlMap } from './type'
 import { setTheme, setHighlight } from './codeHighlight'
 import { handleHoverProvider } from './hoverProvider'
 import { preventEventBubbling } from './defaultEvent'
@@ -871,6 +871,10 @@ export default defineComponent({
       return getCompletionContextByEditor(editor!, triggerCharacters)
     }
     
+    const getIconUrlMapByEditor = (): IconUrlMap => {
+      return getIconUrlMap()
+    }
+    
 
     return {
       editor,
@@ -999,7 +1003,8 @@ export default defineComponent({
       revealRangeNearTopIfOutsideViewport,
       trigger,
       createDecorationsCollection,
-      getCompletionContext
+      getCompletionContext,
+      getIconUrlMapByEditor
     }
   },
   render() {

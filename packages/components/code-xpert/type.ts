@@ -47,9 +47,13 @@ export interface CompletionContext {
     triggerLength?: number
 }
 
+export interface IconUrlMap {
+    [propName: number]: string
+}
 
 export interface CodeEditorXpert extends monaco.editor.IStandaloneCodeEditor {
     editor: monaco.editor.IStandaloneCodeEditor
     refEditor: HTMLDivElement| null
     getCompletionContext() : CompletionContext
+    getIconUrlMapByEditor() : IconUrlMap
 }
