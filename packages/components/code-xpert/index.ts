@@ -39,7 +39,12 @@ export default defineComponent({
       editor.onDidChangeModelContent(() => registerCompletion(props.suggestions || [], properties, triggerCharacters, editor!))
     }
 
-    watch(() => props, () => initEditor(), { deep: true })
+    watch(() => props, () => {
+      properties =  __assignDefaultProperty(defaultProperty, props.options || {})
+      setTheme(properties, props.suggestions, props.highlightItem, props.theme)
+      setHighlight(properties, props.suggestions, props.highlightItem)
+      handleHoverProvider(properties, props.suggestions, props.hoverProvider)
+    }, { deep: true })
 
     const disposeEditor = () => {
       editor && editor.dispose()
