@@ -105,14 +105,14 @@ export function registerCompletion(completionItems: CompletionItem[], properties
 
 export function checkSuggestionsByValue(editor: monaco.editor.IStandaloneCodeEditor, triggerCharacters: string[]): boolean {
     const cxt = getCompletionContextByEditor(editor, triggerCharacters)
-
+    
     if(!cxt.word) return false
 
     if(cxt.triggerKind === monaco.languages.CompletionTriggerKind.Invoke) return true
 
     if(!cxt.triggerCharacter) return false
 
-    return triggerCharacters.includes(cxt.triggerCharacter)
+    return triggerCharacters.includes(cxt.triggerCharacter) || splitStrings(triggerCharacters).includes(cxt.triggerCharacter)
 }
 
 
