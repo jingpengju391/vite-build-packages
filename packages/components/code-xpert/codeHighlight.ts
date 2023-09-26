@@ -3,7 +3,7 @@ import { monacos } from "."
 import * as monaco from 'monaco-editor'
 import { CompletionItem, HighlightItem, IStandaloneEditorConstructionOptions } from "./type"
 
-export function setHighlight(properties: IStandaloneEditorConstructionOptions, completionItems: Partial<CompletionItem>[] = [], highlightItem: HighlightItem[] = []) {
+export function setHighlight(properties: IStandaloneEditorConstructionOptions, completionItems: Partial<CompletionItem>[] = [], highlightItem: HighlightItem[] = [], keywords?: string[]) {
     const { cases, keyword } = getMonarchTokens([...completionItems, ...highlightItem])
     monacos.languages.setMonarchTokensProvider(properties.language!, {
         // Difficulty: "Moderate"
@@ -17,14 +17,14 @@ export function setHighlight(properties: IStandaloneEditorConstructionOptions, c
         // Set defaultToken to invalid to see what you do not tokenize yet
         defaultToken: 'invalid',
 
-        keywords: [
-            'break', 'case', 'catch', 'class', 'continue', 'const',
-            'constructor', 'debugger', 'default', 'delete', 'do', 'else',
-            'export', 'extends', 'false', 'finally', 'for', 'from', 'function',
-            'get', 'if', 'import', 'in', 'instanceof', 'let', 'new', 'null',
-            'return', 'set', 'super', 'switch', 'symbol', 'this', 'throw', 'true',
-            'try', 'typeof', 'undefined', 'var', 'void', 'while', 'with', 'yield',
-            'async', 'await', 'of'
+        keywords: keywords?.length ? keywords : [
+            'auto', 'bool', 'break', 'case', 'catch', 'char', 'class', 'const',
+            'continue', 'default', 'delete', 'do', 'double', 'else', 'enum', 'false',
+            'float', 'for', 'friend', 'goto', 'if', 'inline', 'int', 'long',
+            'mutable', 'namespace', 'new', 'operator', 'private', 'protected', 'public',
+            'return', 'short', 'signed', 'sizeof', 'static', 'struct', 'switch',
+            'template', 'this', 'throw', 'true', 'try', 'typedef', 'typeid', 'typename',
+            'union', 'unsigned', 'using', 'virtual', 'void', 'volatile', 'while', 'name', 'profile', 'links', 'series', 'variables'
         ],
 
         ...keyword,

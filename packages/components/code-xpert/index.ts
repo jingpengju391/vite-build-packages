@@ -18,7 +18,8 @@ export default defineComponent({
     triggerCharacters: Array as PropType<string[]>,
     highlightItem: Array as PropType<HighlightItem[]>,
     hoverProvider: Array as PropType<HoverProvider[]>,
-    theme: Object as PropType<Partial<monaco.editor.IStandaloneThemeData>>
+    theme: Object as PropType<Partial<monaco.editor.IStandaloneThemeData>>,
+    keywords: Array as PropType<string[]>,
   },
   setup(props) {
    
@@ -33,7 +34,7 @@ export default defineComponent({
       triggerCharacters.push(...[...new Set([...defaultTriggerCharacters, ...(props.triggerCharacters || [])])])
       properties.preventDefault &&  preventEventBubbling()
       setTheme(properties, props.suggestions, props.highlightItem, props.theme)
-      setHighlight(properties, props.suggestions, props.highlightItem)
+      setHighlight(properties, props.suggestions, props.highlightItem, props.keywords)
       handleHoverProvider(properties, props.suggestions, props.hoverProvider)
       editor = monaco.editor.create(refEditor.value, properties)
       editor.onDidChangeModelContent(() => registerCompletion(props.suggestions || [], properties, triggerCharacters, editor!))
@@ -42,7 +43,7 @@ export default defineComponent({
     watch(() => props, () => {
       properties =  __assignDefaultProperty(defaultProperty, props.options || {})
       setTheme(properties, props.suggestions, props.highlightItem, props.theme)
-      setHighlight(properties, props.suggestions, props.highlightItem)
+      setHighlight(properties, props.suggestions, props.highlightItem, props.keywords)
       handleHoverProvider(properties, props.suggestions, props.hoverProvider)
     }, { deep: true })
 
