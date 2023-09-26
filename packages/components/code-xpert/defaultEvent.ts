@@ -25,15 +25,24 @@ export function getCompletionContextByEditor(editor: monaco.editor.IStandaloneCo
     const model = editor.getModel()
     if(!model || !position) return completion
 
-    const lineContent = model.getLineContent(position.lineNumber)
+    let lineContent = model.getLineContent(position.lineNumber)
+
     let stop = false
     let endPos = position.column - 2
+
+    const lastDotIndex = lineContent.lastIndexOf(".")
+    if (lastDotIndex !== -1) {
+        lineContent = lineContent.slice(0, lastDotIndex + 1) + "." + lineContent.slice(lastDotIndex + 1)
+        endPos++
+    }
+
     const bracket = { num: 0, bracket: '' }
     const regChar = /[a-zA-Z0-9_]/
     const regRightBracket = /[\\)\]\\}]/
     const regLeftBracket = /[\\(\\[\\{]/
     const regTrigger = evalRight(`/[\\${splitStrings(triggerCharacters).join('\\')}]/`)
-    const tempWords = []
+    const tempWords: any = []
+
     const tempTriggerCharacters = []
     while(endPos >= 0 && !stop) {
         const char = lineContent[endPos]
@@ -93,13 +102,12 @@ export function getCompletionContextByEditor(editor: monaco.editor.IStandaloneCo
         }
         endPos--
     }
-
     if(tempWords.length) {
         completion.word = tempWords.reverse().join('')
     }
 
     if(tempTriggerCharacters.length) {
-        completion.triggerCharacter = tempTriggerCharacters.reverse().join('')
+        completion.triggerCharacter = tempTriggerCharacters[0] === '.' ? '.' : tempTriggerCharacters.reverse().join('')
         completion.triggerLength = tempTriggerCharacters.length
     }
     
