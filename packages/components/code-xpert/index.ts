@@ -5,7 +5,7 @@ import './style/icon-style.scss'
 import { __assignDefaultProperty } from '@/utils'
 import { defaultProperty, defaultTriggerCharacters } from './defaultProperty'
 import { getCompletionContextByEditor, getIconUrlMap } from  './defaultEvent'
-import { registerCompletion } from './registerCompletion'
+import { checkSuggestionsByValue, registerCompletion } from './registerCompletion'
 import { IStandaloneEditorConstructionOptions, CompletionItem, CodeContainer, HighlightItem, HoverProvider, CompletionContext, IconUrlMap } from './type'
 import { setTheme, setHighlight } from './codeHighlight'
 import { handleHoverProvider } from './hoverProvider'
@@ -19,7 +19,7 @@ export default defineComponent({
     highlightItem: Array as PropType<HighlightItem[]>,
     hoverProvider: Array as PropType<HoverProvider[]>,
     theme: Object as PropType<Partial<monaco.editor.IStandaloneThemeData>>,
-    keywords: Array as PropType<string[]>,
+    keywords: Array as PropType<string[]>
   },
   setup(props) {
    
@@ -32,12 +32,19 @@ export default defineComponent({
       if(!refEditor.value) return 
       properties =  __assignDefaultProperty(defaultProperty, props.options || {})
       triggerCharacters.push(...[...new Set([...defaultTriggerCharacters, ...(props.triggerCharacters || [])])])
-      properties.preventDefault &&  preventEventBubbling()
+      properties.preventDefault &&  preventEventBubbling(refEditor.value)
       setTheme(properties, props.suggestions, props.highlightItem, props.theme)
       setHighlight(properties, props.suggestions, props.highlightItem, props.keywords)
       handleHoverProvider(properties, props.suggestions, props.hoverProvider)
       editor = monaco.editor.create(refEditor.value, properties)
-      editor.onDidChangeModelContent(() => registerCompletion(props.suggestions || [], properties, triggerCharacters, editor!))
+      editor.onDidChangeModelContent(() => {
+        if(checkSuggestionsByValue(editor!, props.suggestions || [], triggerCharacters)) {
+          editor!.updateOptions({ quickSuggestions: true })
+          registerCompletion(props.suggestions || [], properties, triggerCharacters, editor!)
+        }else{
+          editor!.updateOptions({ quickSuggestions: false })
+        }
+      })
     }
 
     watch(() => props, () => {
@@ -1014,7 +1021,7 @@ export default defineComponent({
     }
   },
   render() {
-    return h(CodeContainer.HTMLTAG, { class: CodeContainer.CLASSNAME, ref: CodeContainer.REF, id: CodeContainer.ID }, CodeContainer.EMPTYSTRING)
+    return h(CodeContainer.HTMLTAG, { class: CodeContainer.CLASSNAME, ref: CodeContainer.REF }, CodeContainer.EMPTYSTRING)
   }
 })
 

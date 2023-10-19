@@ -1,9 +1,8 @@
-import { CodeContainer, CompletionContext, IconUrlMap } from "./type"
+import { CompletionContext, IconUrlMap } from "./type"
 import * as monaco from 'monaco-editor'
 import { evalRight } from "@/utils"
 
-export function preventEventBubbling() {
-    const codeEditorBox = document.getElementById(CodeContainer.ID)
+export function preventEventBubbling(codeEditorBox: HTMLDivElement| null) {
     if(codeEditorBox) {
         codeEditorBox.addEventListener('dragover', (event: Event) => {
             event.stopPropagation()

@@ -14,7 +14,7 @@ export function registerCompletion(completionItems: CompletionItem[], properties
         // @ts-ignore
         provideCompletionItems: () => {
             // const range = new monaco.Range(position.lineNumber, 1, position.lineNumber, position.column)
-            const suggestions: monaco.languages.CompletionItem[] = checkSuggestionsByValue(editor, triggerCharacters) ? completionItems.map(suggestion => {
+            const suggestions: monaco.languages.CompletionItem[] = completionItems.map(suggestion => {
                 return <monaco.languages.CompletionItem>{
                     /**
                      * The label of this completion item. By default
@@ -96,17 +96,17 @@ export function registerCompletion(completionItems: CompletionItem[], properties
                      */
                     command: suggestion.command,
                 }
-            }) : []
+            })
 
             return { suggestions }
         }
     })
 }
 
-export function checkSuggestionsByValue(editor: monaco.editor.IStandaloneCodeEditor, triggerCharacters: string[]): boolean {
+export function checkSuggestionsByValue(editor: monaco.editor.IStandaloneCodeEditor, completionItems: CompletionItem[], triggerCharacters: string[]): boolean {
     const cxt = getCompletionContextByEditor(editor, triggerCharacters)
     
-    if(!cxt.word) return false
+    if(!cxt.word || !completionItems.length) return false
 
     if(cxt.triggerKind === monaco.languages.CompletionTriggerKind.Invoke) return true
 
