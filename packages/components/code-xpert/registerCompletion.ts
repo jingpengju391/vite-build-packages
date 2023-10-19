@@ -4,7 +4,7 @@ import * as monaco from 'monaco-editor'
 import { getCompletionContextByEditor, splitStrings } from "./defaultEvent"
 let registerCompletionItem: monaco.IDisposable | undefined
 
-export function registerCompletion(completionItems: CompletionItem[], properties: IStandaloneEditorConstructionOptions, triggerCharacters: string[], editor: monaco.editor.IStandaloneCodeEditor) {
+export function registerCompletion(completionItems: CompletionItem[], properties: IStandaloneEditorConstructionOptions, triggerCharacters: string[]) {
     registerCompletionItem && registerCompletionItem.dispose()
     registerCompletionItem = monacos.languages.registerCompletionItemProvider(properties.language!, {
         triggerCharacters: splitStrings(triggerCharacters),

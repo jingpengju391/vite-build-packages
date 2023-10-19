@@ -40,7 +40,7 @@ export default defineComponent({
       editor.onDidChangeModelContent(() => {
         if(checkSuggestionsByValue(editor!, props.suggestions || [], triggerCharacters)) {
           editor!.updateOptions({ quickSuggestions: true })
-          registerCompletion(props.suggestions || [], properties, triggerCharacters, editor!)
+          registerCompletion(props.suggestions || [], properties, triggerCharacters)
         }else{
           editor!.updateOptions({ quickSuggestions: false })
         }
