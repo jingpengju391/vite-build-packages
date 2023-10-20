@@ -35,7 +35,7 @@ export default defineComponent({
       properties.preventDefault &&  preventEventBubbling(refEditor.value)
       setTheme(properties, props.suggestions, props.highlightItem, props.theme)
       setHighlight(properties, props.suggestions, props.highlightItem, props.keywords)
-      handleHoverProvider(properties, props.suggestions, props.hoverProvider)
+      handleHoverProvider(properties, props.hoverProvider)
       editor = monaco.editor.create(refEditor.value, properties)
       editor.onDidChangeModelContent(() => {
         if(checkSuggestionsByValue(editor!, props.suggestions || [], triggerCharacters)) {
@@ -51,7 +51,7 @@ export default defineComponent({
       properties =  __assignDefaultProperty(defaultProperty, props.options || {})
       setTheme(properties, props.suggestions, props.highlightItem, props.theme)
       setHighlight(properties, props.suggestions, props.highlightItem, props.keywords)
-      handleHoverProvider(properties, props.suggestions, props.hoverProvider)
+      handleHoverProvider(properties, props.hoverProvider)
     }, { deep: true })
 
     const disposeEditor = () => {
