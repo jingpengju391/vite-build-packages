@@ -29,9 +29,8 @@ export function getCompletionContextByEditor(editor: monaco.editor.IStandaloneCo
     let stop = false
     let endPos = position.column - 2
 
-    const lastDotIndex = lineContent.lastIndexOf(".")
-    if (lastDotIndex !== -1) {
-        lineContent = lineContent.slice(0, lastDotIndex + 1) + "." + lineContent.slice(lastDotIndex + 1)
+    if (lineContent[endPos] === '.') {
+        lineContent = lineContent.slice(0, endPos + 1) + "." + lineContent.slice(endPos + 1)
         endPos++
     }
 
