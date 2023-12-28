@@ -51,7 +51,7 @@ const options: JsonVirtualProps = {
 
 ## Components List
 
-#### JsonVirtualTable (disable)
+#### JsonVirtualTable
 
 - a component ablout virtual table, it's nased on Vxe Table secondary development[ ( more ) ](https://github.com/jingpengju391/vite-build-packages/blob/master/docs/README.TABLE.md).
 
@@ -70,6 +70,4 @@ const options: JsonVirtualProps = {
 If you have any idea, feel free to open an issue to discuss a new feature, or fork Nova Plus and submit your changes back to me.
 
 ## Release Notes
-
-- **Version 1.0.X** First public release
 

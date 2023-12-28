@@ -9,7 +9,7 @@ import {
   onBeforeMount,
   ComponentInternalInstance
 } from 'vue'
-import { VxeGridListeners, VxeGridInstance, VxeTableDefines } from 'vxe-table'
+import { VxeGridListeners, VxeGridInstance, VxeTableDefines, Grid } from 'vxe-table'
 import Sortable from 'sortablejs'
 
 import { evalRight, omit } from '../../utils'
@@ -194,7 +194,7 @@ export default defineComponent({
         }
       },
       h(
-        'div',
+        Grid,
         {
           ...omit(omitProperty, properties),
           ...omit(omitEvent, __overWents(__assignDefaultEvent(defaultEvent, this.events)))
