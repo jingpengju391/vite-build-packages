@@ -1,7 +1,3 @@
-<p align="center">
-  <img width="300px" src="https://www.deeplightconnect.com/img/feat-01.f335a7ab.png">
-</p>
-
 <p align="center">Nova-plus - A Vue.js 3 components library</p>
 
 - 💪 Vue 3 Composition API
