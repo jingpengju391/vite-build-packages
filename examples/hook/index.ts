@@ -3,7 +3,7 @@ import NpCode from '../views/NpCode.vue'
 import NpVisualizer from '../views/NpVisualizer.vue'
 import NpForm from '../views/NpForm.vue'
 
-export const defaultCurrentComponentNumber = -2
+export const defaultCurrentComponentNumber = -1
 
 export const registerComponents = [
     {
